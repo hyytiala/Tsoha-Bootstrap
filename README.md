@@ -2,9 +2,9 @@
 
 Yleisiä linkkejä:
 
-* [Linkki sovellukseeni](https://www.cs.helsinki.fi)
+* [Linkki sovellukseeni](http://hyytiala.users.cs.helsinki.fi/remonttidb)
 * [Linkki dokumentaatiooni](https://www.github.com)
 
 ## Työn aihe
 
-Laita tähän aihekuvaus tai [linkki valmiiseen aiheeseen](http://advancedkittenry.github.io/suunnittelu_ja_tyoymparisto/aiheet/Pokemon-kanta.html) 
+Aiheena on tehdä remonttikohteiden tietokanta. 
