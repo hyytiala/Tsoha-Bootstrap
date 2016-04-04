@@ -23,3 +23,11 @@
   $routes->get('/login', function() {
     HelloWorldController::login();
   });
+
+  $routes->get('/asiakkaat', function() {
+    HelloWorldController::asiakkaat();
+  });
+
+  $routes->get('/asiakasmuok', function() {
+    HelloWorldController::asiakasmuok();
+  });

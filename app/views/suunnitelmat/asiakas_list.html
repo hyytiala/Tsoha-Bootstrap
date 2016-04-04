@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Asiakkaat</h1>
+
+  <p>
+    <a href="#" class="btn btn-success">Lisää asiakas</a>
+  </p>
+
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>Nimi</th>
+        <th>Laskutusosoite</th>
+        <th>Postinumero</th>
+        <th>Postipaikka</th>
+        <th>Puhelinnumero</th>
+        <th>Sähköposti</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td><a href="#">Esa Korhonen</a></td>
+        <td>Pihlajatie 26</td>
+        <td>00250</td>
+        <td>Helsinki</td>
+        <td>040123456</td>
+        <td>esa@esa.fi</td>
+        <th><a class="btn btn-default btn-sm" href="#">Muokkaa</a>
+        <th><a class="btn btn-danger btn-sm" href="#">Poista</a></th>
+      </tr>
+    </tbody>
+  </table>
+{% endblock %}

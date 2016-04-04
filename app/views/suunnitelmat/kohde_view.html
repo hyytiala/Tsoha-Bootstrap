@@ -21,6 +21,7 @@
         <th>Päiväys</th>
         <th>Työtunnit</th>
         <th>Kuvaus</th>
+        <th></th>
       </tr>
     </thead>
 
@@ -30,10 +31,27 @@
         <td>2.2.2016</td>
         <td>4</td>
         <td>Tein vähän hommia</td>
+        <th><a class="btn btn-danger btn-sm" href="#">Poista merkintä</a></th>
       </tr>
     </tbody>
   </table>
-  <p>
-    <a href="#" class="btn btn-success">Lisää merkintä</a>
-  </p>
+  <form class="form-horizontal">
+    <div class="form-group">
+      <label>Työmies</label>
+      <input type="text" class="form-control">
+    </div>
+    <div class="form-group">
+      <label>Päiväys</label>
+      <input type="text" class="form-control">
+    </div>
+    <div class="form-group">
+      <label>Työtunnit</label>
+      <input type="text" class="form-control">
+    </div>
+    <div class="form-group">
+      <label>Kuvaus</label>
+      <input type="text" class="form-control">
+    </div>
+      <button type="submit" class="btn btn-primary">Lisää merkintä</button>
+  </form>
   {% endblock %}
