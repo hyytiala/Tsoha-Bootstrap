@@ -16,3 +16,5 @@ Aiheena on tehdä remonttikohteiden tietokanta urakoitsijoille.
 * [Kohteen muokkaus](http://hyytiala.users.cs.helsinki.fi/remonttidb/muokkaa)
 * [Asiakas lista](http://hyytiala.users.cs.helsinki.fi/remonttidb/asiakkaat)
 * [Asiakkaan muokkaus](http://hyytiala.users.cs.helsinki.fi/remonttidb/asiakasmuok)
+* [Työmieslista](http://hyytiala.users.cs.helsinki.fi/remonttidb/tyomiehet)
+* [Työmiesten muokkaus](http://hyytiala.users.cs.helsinki.fi/remonttidb/tyomiesmuok)

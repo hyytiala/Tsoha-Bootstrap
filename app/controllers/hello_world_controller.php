@@ -35,4 +35,12 @@
     public static function asiakkaat(){
       View::make('suunnitelmat/asiakas_list.html');
     }
+
+    public static function tyomiehet(){
+      View::make('suunnitelmat/tyomies_list.html');
+    }
+
+    public static function tyomiesmuok(){
+      View::make('suunnitelmat/tyomiesmuok.html');
+    }
   }

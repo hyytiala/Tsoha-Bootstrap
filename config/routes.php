@@ -31,3 +31,11 @@
   $routes->get('/asiakasmuok', function() {
     HelloWorldController::asiakasmuok();
   });
+
+  $routes->get('/tyomiehet', function() {
+    HelloWorldController::tyomiehet();
+  });
+
+  $routes->get('/tyomiesmuok', function() {
+    HelloWorldController::tyomiesmuok();
+  });
