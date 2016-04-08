@@ -39,3 +39,8 @@
   $routes->get('/tyomiesmuok', function() {
     HelloWorldController::tyomiesmuok();
   });
+
+  //vkon 3 asioita down here
+  $routes->get('/asiakas', function() {
+    AsiakkaatController::index();
+  });
