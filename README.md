@@ -3,11 +3,14 @@
 Yleisiä linkkejä:
 
 * [Linkki sovellukseeni](http://hyytiala.users.cs.helsinki.fi/remonttidb)
-* [Linkki dokumentaatiooni](https://www.github.com)
+* [Linkki dokumentaatiooni](https://github.com/hyytiala/Tsoha-Bootstrap/blob/master/doc/dokumentti.pdf)
 
 ## Työn aihe
 
 Aiheena on tehdä remonttikohteiden tietokanta urakoitsijoille.
+
+## Viikon 3 malliluokka: Asiakas
+* [Linkki asiakaslistaan](http://hyytiala.users.cs.helsinki.fi/remonttidb/asiakas)
 
 ## Suunnitelmat html sivuista
 * [Kirjautumisivu](http://hyytiala.users.cs.helsinki.fi/remonttidb)
