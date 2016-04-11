@@ -46,4 +46,11 @@
     		}
     		return null;
 		}
+
+        public function save(){
+            $query = DB::connection()->prepare('INSERT INTO Asiakas (nimi, osoite, postinumero, postipaikka, puhelin, email) VALUES (:nimi, :osoite, :postinumero, :postipaikka, :puhelin, :email) RETURNING id');
+            $query->execute(array('nimi' => $this->nimi, 'osoite' => $this->osoite, 'postinumero' => $this->postinumero, 'postipaikka' => $this->postipaikka, 'puhelin' => $this->puhelin, 'email' => $this->email));
+            $row = $query->fetch();
+            $this->id = $row['id'];
+        }
 	}

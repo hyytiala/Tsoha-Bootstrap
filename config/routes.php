@@ -44,3 +44,15 @@
   $routes->get('/asiakas', function() {
     AsiakkaatController::index();
   });
+
+  $routes->get('/asiakas/uusi', function() {
+    AsiakkaatController::create();
+  });
+
+  $routes->post('/asiakas', function(){
+    AsiakkaatController::store();
+  });
+
+  $routes->get('/asiakas/:id', function($id) {
+    AsiakkaatController::show($id);
+  });

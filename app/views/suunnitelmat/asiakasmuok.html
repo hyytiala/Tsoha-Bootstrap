@@ -2,30 +2,30 @@
 {% block content %}
   <h1>Muokkaa asiakasta</h1>
 
-  <form>
+  <form method="post" action="{{base_path}}/asiakas">
     <div class="form-group">
       <label>Nimi</label>
-      <input type="text" class="form-control">
+      <input type="text" name="nimi" class="form-control">
     </div>
     <div class="form-group">
       <label>Osoite</label>
-      <input type="text" class="form-control">
+      <input type="text" name="osoite" class="form-control">
     </div>
     <div class="form-group">
       <label>Postinumero</label>
-      <input type="text" class="form-control">
+      <input type="text" name="postinumero" class="form-control">
     </div>
     <div class="form-group">
       <label>Postipaikka</label>
-      <input type="text" class="form-control">
+      <input type="text" name="postipaikka" class="form-control">
     </div>
     <div class="form-group">
       <label>Puhelinnumero</label>
-      <input type="text" class="form-control">
+      <input type="text" name="puhelin" class="form-control">
     </div>
     <div class="form-group">
       <label>Sähköposti</label>
-      <input type="text" class="form-control">
+      <input type="text" name="email" class="form-control">
     </div>
     <div class="form-group">
       <button type="submit" class="btn btn-primary">Tallenna</button>
