@@ -7,8 +7,8 @@
     }
 
     public static function sandbox(){
-    $esa = Asiakas::find(1);
-    $asiakkaat = Asiakas::all();
+    $esa = Kohde::find(2);
+    $asiakkaat = Kohde::all();
     Kint::dump($asiakkaat);
     Kint::dump($esa);
     }

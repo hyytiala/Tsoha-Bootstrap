@@ -12,10 +12,6 @@
     HelloWorldController::kohteet();
   });
 
-  $routes->get('/kohde', function() {
-    HelloWorldController::kohde();
-  });
-
   $routes->get('/muokkaa', function() {
     HelloWorldController::muokkaa();
   });
@@ -41,6 +37,7 @@
   });
 
   //vkon 3 asioita down here
+  //Asiakas
   $routes->get('/asiakas', function() {
     AsiakkaatController::index();
   });
@@ -55,4 +52,22 @@
 
   $routes->get('/asiakas/:id', function($id) {
     AsiakkaatController::show($id);
+  });
+
+  //Kohde
+
+  $routes->get('/kohde', function() {
+    KohteetController::index();
+  });
+
+  $routes->get('/kohde/uusi', function() {
+    KohteetController::create();
+  });
+
+  $routes->post('/kohde', function(){
+    KohteetController::store();
+  });
+
+  $routes->get('/kohde/:id', function($id) {
+    KohteetController::show($id);
   });

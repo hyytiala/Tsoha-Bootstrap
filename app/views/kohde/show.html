@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>{{kohde.osoite}}</h1>
+<p>
+    <button class="btn btn-danger">Poista</button> <a href="#" class="btn btn-default">Muokkaa</a>
+  </p>
+  <ul>
+    <li><strong>Asiakas: </strong>{{kohde.nimi}}</li>
+    <li><strong>Osoite: </strong>{{kohde.osoite}}</li>
+    <li><strong>Aloitettu: </strong>{{kohde.aloitettu}}</li>
+    <li>
+      {% if kohde.tila == "kesken" %}
+        <label class="label label-danger">kesken</label>
+      {% endif%}
+      {% if kohde.tila == "valmis" %}
+        <label class="label label-success">Valmis</label>
+      {% endif%}
+      {% if kohde.tila == "lopetettu" %}
+        <label class="label label-warning">Lopetettu</label>
+      {% endif%}
+    </li>
+  </ul>
+
+  <h3>Kohteen työnkuvaus</h3>
+  <p>{{kohde.kuvaus}}</p>
+  <br>
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>Työmies</th>
+        <th>Päiväys</th>
+        <th>Työtunnit</th>
+        <th>Kuvaus</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td>Työläinen</td>
+        <td>2.2.2016</td>
+        <td>4</td>
+        <td>Tein vähän hommia</td>
+        <th><a class="btn btn-danger btn-sm" href="#">Poista merkintä</a></th>
+      </tr>
+    </tbody>
+  </table>
+  {% endblock %}
