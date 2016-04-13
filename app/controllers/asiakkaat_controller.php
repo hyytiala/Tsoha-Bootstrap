@@ -29,7 +29,6 @@
 				'email' => $params['email']
 				));
 
-			Kint::dump($params);
 
 			$asiakas->save();
 

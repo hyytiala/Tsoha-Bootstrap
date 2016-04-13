@@ -10,8 +10,9 @@
 		}
 
 		public static function show($id){
+            $merkinnat = Merkinta::all($id);
 			$kohde = Kohde::find($id);
-			View::make('kohde/show.html', array('kohde'=>$kohde));
+			View::make('kohde/show.html', array('kohde'=>$kohde, 'merkinnat' => $merkinnat));
 		}
 
 		public static function create(){

@@ -71,3 +71,25 @@
   $routes->get('/kohde/:id', function($id) {
     KohteetController::show($id);
   });
+
+  //Tyomies
+  $routes->get('/tyomies', function() {
+    TyomiesController::index();
+  });
+
+  $routes->get('/tyomies/uusi', function() {
+    TyomiesController::create();
+  });
+
+  $routes->post('/tyomies', function(){
+    TyomiesController::store();
+  });
+
+  //merkinta
+$routes->get('/merkinta/:id', function($id) {
+    MerkintaController::create($id);
+  });
+
+$routes->post('/merkinta', function(){
+    MerkintaController::store();
+  });

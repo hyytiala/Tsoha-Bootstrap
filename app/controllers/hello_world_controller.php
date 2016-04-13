@@ -8,7 +8,7 @@
 
     public static function sandbox(){
     $esa = Kohde::find(2);
-    $asiakkaat = Kohde::all();
+    $asiakkaat = Merkinta::all(3);
     Kint::dump($asiakkaat);
     Kint::dump($esa);
     }

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Lisää uusi merkintä kohteelle: {{kohde.osoite}}</h1>
+
+  <form method="post" action="{{base_path}}/merkinta">
+    <div class="form-group">
+      <label>Kohde</label>
+      <input type="text" class="form-control" name="kohde" value="{{kohde.id}}">
+    </div>
+    <div class="form-group">
+      <label>Töntekijä</label>
+      <select class="form-control" name="nimi" >
+      {% for tyomies in tyomiehet %}
+        <option value="{{tyomies.id}}">{{tyomies.nimi}}</option>
+      {% endfor %}
+    </select>
+     </div>
+    <div class="form-group">
+      <label>Kuvaus</label>
+      <input type="text" name="kuvaus" class="form-control">
+    </div>
+    <div class="form-group">
+      <label>Työtunnit</label>
+      <input type="text" name="tunnit" class="form-control">
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary">Tallenna</button>
+    </div>
+  </form>
+  {% endblock %}

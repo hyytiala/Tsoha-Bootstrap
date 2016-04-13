@@ -27,7 +27,8 @@ CREATE TABLE Kohde(
 );
 
 CREATE TABLE Merkinta(
-	paivays DATE NOT NULL,
+	id SERIAL PRIMARY KEY,
+	paivays TIMESTAMP DEFAULT CURRENT_TIMESTAMP(0),
 	tunnit DECIMAL NOT NULL,
 	kuvaus varchar(100),
 	Kohde INTEGER REFERENCES Kohde(id),
