@@ -5,6 +5,7 @@
 
 		public function __construct($attributes){
     		parent::__construct($attributes);
+            $this->validators = array('validate_name');
   		}
 
 		public static function all(){
@@ -52,5 +53,16 @@
             $query->execute(array('nimi' => $this->nimi, 'osoite' => $this->osoite, 'postinumero' => $this->postinumero, 'postipaikka' => $this->postipaikka, 'puhelin' => $this->puhelin, 'email' => $this->email));
             $row = $query->fetch();
             $this->id = $row['id'];
+        }
+
+        public function validate_name(){
+            $errors = array();
+            if($this->nimi == '' || $this->nimi == null){
+                $errors[] = 'Nimi ei saa olla tyhjä';
+            }
+            if(strlen($this->nimi) < 3){
+                $errors[] = 'Nimen tulee olla vähintään 3 merkkiä';
+            }
+            return $errors;
         }
 	}
