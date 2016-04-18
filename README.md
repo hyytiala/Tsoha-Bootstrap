@@ -9,8 +9,11 @@ Yleisiä linkkejä:
 
 Aiheena on tehdä remonttikohteiden tietokanta urakoitsijoille.
 
-## Viikon 3 malliluokka: Asiakas
+## Viikon 4 malliluokka: Asiakas
 * [Linkki asiakaslistaan](http://hyytiala.users.cs.helsinki.fi/remonttidb/asiakas)
+* [Kijautuminen](http://hyytiala.users.cs.helsinki.fi/remonttidb/login)
+* Käyttäjätunnus: admin
+* Salasana: admin
 
 ## Suunnitelmat html sivuista
 * [Kirjautumisivu](http://hyytiala.users.cs.helsinki.fi/remonttidb)
