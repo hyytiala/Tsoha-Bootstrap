@@ -8,7 +8,7 @@
 
     public static function sandbox(){
     $esa = new Asiakas(array(
-    'nimi' => 'e',
+    'nimi' => 'esa',
     'osoite' => 'tölikkä',
     'postinumero' => '005540',
     'postipaikka' => 'hel',

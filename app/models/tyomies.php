@@ -2,7 +2,7 @@
 
 	
 	class Tyomies extends BaseModel{
-		public $id, $nimi, $salasana, $puhelin, $tunnit;
+		public $id, $nimi, $kayttaja, $salasana, $puhelin, $tunnit;
 		
 		public function __construct($attributes){
 			parent::__construct($attributes);
@@ -43,7 +43,7 @@
 		}
 
         public function save(){
-            $query = DB::connection()->prepare('INSERT INTO Tyomies (nimi, puhelin, salasana) VALUES (:nimi, :puhelin, :salasana) RETURNING id');
-            $query->execute(array('nimi' => $this->nimi, 'puhelin' => $this->puhelin, 'salasana' => $this->salasana));
+            $query = DB::connection()->prepare('INSERT INTO Tyomies (nimi, kayttaja, puhelin, salasana) VALUES (:nimi, :kayttaja, :puhelin, :salasana) RETURNING id');
+            $query->execute(array('nimi' => $this->nimi, 'kayttaja' => $this->kayttaja, 'puhelin' => $this->puhelin, 'salasana' => $this->salasana));
 	}
 }

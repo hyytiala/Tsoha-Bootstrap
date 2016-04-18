@@ -54,6 +54,17 @@
     AsiakkaatController::show($id);
   });
 
+  $routes->get('/asiakas/:id/edit', function($id){
+    AsiakkaatController::edit($id);
+  });
+  $routes->post('/asiakas/:id/edit', function($id){
+    AsiakkaatController::update($id);
+  });
+
+  $routes->post('/asiakas/:id/destroy', function($id){
+    AsiakkaatController::destroy($id);
+  });
+
   //Kohde
 
   $routes->get('/kohde', function() {
@@ -86,10 +97,20 @@
   });
 
   //merkinta
-$routes->get('/merkinta/:id', function($id) {
+  $routes->get('/merkinta/:id', function($id) {
     MerkintaController::create($id);
   });
 
-$routes->post('/merkinta', function(){
+  $routes->post('/merkinta', function(){
     MerkintaController::store();
+  });
+
+//login
+  $routes->get('/login', function(){
+  // Kirjautumislomakkeen esittäminen
+  UserController::login();
+  });
+  $routes->post('/login', function(){
+  // Kirjautumisen käsittely
+  UserController::handle_login();
   });

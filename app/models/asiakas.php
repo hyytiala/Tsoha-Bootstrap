@@ -9,7 +9,7 @@
   		}
 
 		public static function all(){
-			$query = DB::connection()->prepare('SELECT * FROM Asiakas');
+			$query = DB::connection()->prepare('SELECT * FROM Asiakas ORDER BY id');
     		$query->execute();
     		$rows = $query->fetchAll();
     		$asiakkaat = array();
@@ -55,6 +55,26 @@
             $this->id = $row['id'];
         }
 
+        public function update(){
+            $query = DB::connection()->prepare('UPDATE Asiakas SET nimi = :nimi, osoite = :osoite, postinumero = :postinumero, postipaikka = :postipaikka, puhelin = :puhelin,email = :email WHERE id = :id');
+            $query->execute(array('nimi' => $this->nimi, 'osoite' => $this->osoite, 'postinumero' => $this->postinumero, 'postipaikka' => $this->postipaikka, 'puhelin' => $this->puhelin, 'email' => $this->email, 'id' => $this->id));
+            $row = $query->fetch();
+        }
+
+        public function destroy(){
+            $query = DB::connection()->prepare('DELETE FROM Asiakas WHERE id = :id');
+            $query->execute(array('id' => $this->id));
+            $row = $query->fetch();
+        }
+
+        public static function kohteissa($id){
+            $query = DB::connection()->prepare('SELECT COUNT(id) FROM Kohde WHERE asiakas_id = :id');
+            $query->execute(array('id' =>$id));
+            $row = $query->fetch();
+            $nro = $row['count'];
+            return $nro;
+        }
+
         public function validate_name(){
             $errors = array();
             if($this->nimi == '' || $this->nimi == null){
@@ -62,6 +82,15 @@
             }
             if(strlen($this->nimi) < 3){
                 $errors[] = 'Nimen tulee olla vähintään 3 merkkiä';
+            }
+            if($this->osoite == '' || $this->osoite == null){
+                $errors[] = 'Osoite ei saa olla tyhjä';
+            }
+            if($this->postipaikka == '' || $this->postipaikka == null){
+                $errors[] = 'Postipaikka ei saa olla tyhjä';
+            }
+            if($this->postinumero == '' || $this->postinumero == null){
+                $errors[] = 'postinumero ei saa olla tyhjä';
             }
             return $errors;
         }

@@ -11,6 +11,7 @@ CREATE TABLE Asiakas(
 CREATE TABLE Tyomies(
 	id SERIAL PRIMARY KEY,
 	nimi varchar(50) NOT NULL,
+	kayttaja varchar(50) NOT NULL,
 	salasana varchar(50) NOT NULL,
 	puhelin varchar(50) NOT NULL,
 	tunnit DECIMAL DEFAULT 0

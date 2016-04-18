@@ -52,4 +52,12 @@
             $row = $query->fetch();
             $this->id = $row['id'];
         }
+
+        public static function asiakas($id){
+            $query = DB::connection()->prepare('SELECT COUNT(id) FROM Kohde WHERE asiakas_id = :id');
+            $query->execute(array('id' => $this->id));
+            $row = $query->fetch();
+            $nro = $row['count'];
+            return $nro;
+        }
 	}

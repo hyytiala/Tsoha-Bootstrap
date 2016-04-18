@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-	<h1>Lisää Asiakas</h1>
+	<h1>Muokkaa asiakasta: {{attributes.nimi}}</h1>
 
 	{% if errors %}
     	<div class="alert alert-danger">
@@ -12,7 +12,7 @@
     	</div>
   	{% endif %}
 
-	<form method="post" action="{{base_path}}/asiakas">
+	<form method="post" action="{{base_path}}/asiakas/{{attributes.id}}/edit">
 	    <div class="form-group">
 	      <label>Nimi</label>
 	      <input type="text" name="nimi" class="form-control" value="{{attributes.nimi}}">

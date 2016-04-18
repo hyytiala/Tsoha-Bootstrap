@@ -1,6 +1,11 @@
 {% extends "base.html" %}
 {% block content %}
   <h1>Kirjaudu sisään</h1>
+  {% if error %}
+        <div class="alert alert-danger">
+            {{error}}
+        </div>
+    {% endif %}
 
   <form method="post" action="{{base_path}}/login">
     <div class="form-group">

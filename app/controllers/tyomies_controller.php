@@ -23,7 +23,8 @@
 			$tyomies = new Tyomies(array(
 				'nimi' => $params['nimi'],
 				'puhelin' => $params['puhelin'],
-				'salasana' => $params['salasana']
+				'salasana' => $params['salasana'],
+				'kayttaja' => $params['kayttaja']
 				));
 
 
