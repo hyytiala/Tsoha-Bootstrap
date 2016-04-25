@@ -1,42 +1,14 @@
 <?php
 
   $routes->get('/', function() {
-    UserController::login();
+    Redirect::to('/tarkastele');
   });
 
   $routes->get('/hiekkalaatikko', function() {
     HelloWorldController::sandbox();
   });
 
-  $routes->get('/kohteet', function() {
-    HelloWorldController::kohteet();
-  });
 
-  $routes->get('/muokkaa', function() {
-    HelloWorldController::muokkaa();
-  });
-
-  $routes->get('/login', function() {
-    HelloWorldController::login();
-  });
-
-  $routes->get('/asiakkaat', function() {
-    HelloWorldController::asiakkaat();
-  });
-
-  $routes->get('/asiakasmuok', function() {
-    HelloWorldController::asiakasmuok();
-  });
-
-  $routes->get('/tyomiehet', function() {
-    HelloWorldController::tyomiehet();
-  });
-
-  $routes->get('/tyomiesmuok', function() {
-    HelloWorldController::tyomiesmuok();
-  });
-
-  //vkon 3 asioita down here
   //Asiakas
   $routes->get('/asiakas', function() {
     AsiakkaatController::index();
@@ -83,6 +55,10 @@
     KohteetController::show($id);
   });
 
+  $routes->get('/tarkastele/:id', function($id) {
+    KohteetController::tarkastele($id);
+  });
+
   //Tyomies
   $routes->get('/tyomies', function() {
     TyomiesController::index();
@@ -106,11 +82,19 @@
   });
 
 //login
+  $routes->get('/tarkastele', function(){
+    UserController::katselu();
+  });
+  $routes->post('/tarkastele', function(){
+   UserController::handle_katselu();
+  });
   $routes->get('/login', function(){
-  // Kirjautumislomakkeen esittäminen
   UserController::login();
   });
   $routes->post('/login', function(){
-  // Kirjautumisen käsittely
   UserController::handle_login();
   });
+  $routes->post('/logout', function(){
+  UserController::logout();
+  });
+

@@ -5,16 +5,19 @@
 	{
 		
 		public static function index(){
+			self::check_logged_in();
 			$asiakkaat = Asiakas::all();
 			View::make('asiakas/index.html', array('asiakkaat' => $asiakkaat));
 		}
 
 		public static function show($id){
+			self::check_logged_in();
 			$asiakas = Asiakas::find($id);
 			View::make('asiakas/show.html', array('asiakas'=>$asiakas));
 		}
 
 		public static function create(){
+			self::check_logged_in();
 			View::make('asiakas/new.html');
 		}
 
@@ -41,11 +44,13 @@
 		}
 
 		public static function edit($id){
+			self::check_logged_in();
 			$asiakas = Asiakas::find($id);
 			View::make('asiakas/edit.html', array('attributes' => $asiakas));
 		}
 
 		public static function update($id){
+			self::check_logged_in();
 			$params = $_POST;
 			$attributes = array(
 				'id' => $id,
@@ -69,6 +74,7 @@
 		}
 
 		public static function destroy($id){
+			self::check_logged_in();
     		$asiakas = new Asiakas(array('id' => $id));
     		$nro = $asiakas->kohteissa($id);
     		if($nro == 0){

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Tarkastele kohdetta</h1>
+    {% if message %}
+        <div class="alert alert-success">
+            {{message}}
+        </div>
+    {% endif %}
+
+    {% if error %}
+        <div class="alert alert-danger">
+            {{error}}
+        </div>
+    {% endif %}
+
+    <p>
+      Tervetuloa käyttämään remonttiDB:tä. Alla olevaan kenttään voit syöttää urakoitsijalta saamasi kohde numeron. Näin pääset seuraamaan töiden etenemistä.
+    </p>
+
+  <form method="post" action "{{base_path}}/tarkastele">
+    <div class="form-group">
+      <label>Kohdenumero</label>
+      <input type="text" class="form-control" name="id">
+    </div>
+    <button type="submit" class="btn btn-primary">Tarkastele</button>
+  </form>
+{% endblock %}

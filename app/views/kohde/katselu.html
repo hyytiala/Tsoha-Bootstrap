@@ -1,9 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 <h1>{{kohde.osoite}}</h1>
-<p>
-    <button class="btn btn-danger">Poista</button> <a href="#" class="btn btn-default">Muokkaa</a>
-  </p>
+
   <ul>
     <li><strong>Asiakas: </strong>{{kohde.nimi}}</li>
     <li><strong>Osoite: </strong>{{kohde.osoite}}</li>
@@ -21,31 +19,22 @@
     </li>
   </ul>
 
-  <h3>Kohteen työnkuvaus:</h3>
+  <h3>Kohteen työnkuvaus</h3>
   <p>{{kohde.kuvaus}}</p>
   <br>
-  <p>
-    <a href="{{base_path}}/merkinta/{{kohde.id}}" class="btn btn-success">Lisää merkintä</a>
-  </p>
   <table class="table table-striped table-bordered">
     <thead>
       <tr>
-        <th>Työntekijä</th>
         <th>Päiväys</th>
-        <th>Työtunnit</th>
         <th>Kuvaus</th>
-        <th></th>
       </tr>
     </thead>
 
     <tbody>
       {% for merkinta in merkinnat %}
         <tr>
-          <td>{{merkinta.nimi}}</td>
           <td>{{merkinta.paivays}}</td>
-          <td>{{merkinta.tunnit}}</td>
           <td>{{merkinta.kuvaus}}</td>
-          <th><a class="btn btn-danger btn-sm" href="#">Poista merkintä</a></th>
         </tr>
       {% endfor %}
     </tbody>

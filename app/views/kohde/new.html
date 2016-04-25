@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-  <h1>Muokkaa kohdetta: 1001</h1>
+  <h1>Lisää uusi kohde</h1>
 
   <form method="post" action="{{base_path}}/kohde">
   	<div class="form-group">
@@ -30,7 +30,12 @@
 
     <div class="form-group">
       <label>Salli katselu kohdetunnuksella</label>
-      <input value="true" type="checkbox" name="katselu">
+      <div>
+        <input type="radio" name="katselu" value="true">Kyllä</input>
+      </div>
+      <div>
+        <input type="radio" name="katselu" value="false">Ei</input>
+      </div>
     </div>
 
     <div class="form-group">

@@ -12,7 +12,22 @@ class UserController extends BaseController{
       View::make('kayttaja/login.html', array('error' => 'Väärä käyttäjätunnus tai salasana!', 'kayttaja' => $params['kayttaja']));
     }else{
       $_SESSION['kayttaja'] = $kayttaja->id;
-      Redirect::to('/asiakas', array('message' => 'Tervetuloa  ' . $kayttaja->nimi . '!'));
+      Redirect::to('/kohde', array('message' => 'Tervetuloa  ' . $kayttaja->nimi . '!'));
     }
+  }
+
+  public static function logout(){
+    $_SESSION['kayttaja'] = null;
+    Redirect::to('/login', array('message' => 'Olet kirjautunut ulos!'));
+  }
+
+  public static function katselu(){
+    View::make('kayttaja/tarkastele.html');
+  }
+
+  public static function handle_katselu(){
+    $params = $_POST;
+    $id = $params['id'];
+    Redirect::to('/tarkastele/' . $id);
   }
 }

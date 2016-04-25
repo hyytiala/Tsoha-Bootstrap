@@ -1,7 +1,13 @@
 {% extends "base.html" %}
 {% block content %}
   <h1>Kirjaudu sisään</h1>
-  {% if error %}
+    {% if message %}
+        <div class="alert alert-success">
+            {{message}}
+        </div>
+    {% endif %}
+
+    {% if error %}
         <div class="alert alert-danger">
             {{error}}
         </div>
@@ -18,16 +24,6 @@
       <input type="password" class="form-control" name="salasana">
     </div>
 
-    <button type="submit" class="btn btn-primary">Kirjaudu sisään</button>
-  </form>
-
-  <h1>Tarkastele kohdetta</h1>
-
-  <form>
-    <div class="form-group">
-      <label>Kohdenumero</label>
-      <input type="text" class="form-control">
-    </div>
     <button type="submit" class="btn btn-primary">Kirjaudu sisään</button>
   </form>
 {% endblock %}

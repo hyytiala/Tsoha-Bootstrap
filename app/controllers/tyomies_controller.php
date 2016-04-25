@@ -5,16 +5,19 @@
 	{
 		
 		public static function index(){
+			self::check_logged_in();
 			$tyomiehet = Tyomies::all();
 			View::make('tyomies/index.html', array('tyomiehet' => $tyomiehet));
 		}
 
 		public static function show($id){
+			self::check_logged_in();
 			$asiakas = Asiakas::find($id);
 			View::make('tyomies/show.html', array('asiakas'=>$asiakas));
 		}
 
 		public static function create(){
+			self::check_logged_in();
 			View::make('tyomies/new.html');
 		}
 

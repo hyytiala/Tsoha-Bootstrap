@@ -60,4 +60,8 @@
             $nro = $row['count'];
             return $nro;
         }
+
+        public function katselu(){
+            return $this->katselu;
+        }
 	}

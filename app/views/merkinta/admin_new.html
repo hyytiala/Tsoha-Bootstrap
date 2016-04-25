@@ -7,6 +7,14 @@
       <input type="hidden" name="kohde" value="{{kohde.id}}">
     </div>
     <div class="form-group">
+      <label>Töntekijä</label>
+      <select class="form-control" name="nimi" >
+      {% for tyomies in tyomiehet %}
+        <option value="{{tyomies.id}}">{{tyomies.nimi}}</option>
+      {% endfor %}
+    </select>
+     </div>
+    <div class="form-group">
       <label>Kuvaus</label>
       <input type="text" name="kuvaus" class="form-control">
     </div>

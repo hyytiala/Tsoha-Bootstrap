@@ -6,6 +6,7 @@
 		
 
 		public static function create($id){
+            self::check_logged_in();
             $tyomiehet = Tyomies::all();
             $kohde = Kohde::find($id);
             View::make('merkinta/new.html', array('kohde'=>$kohde, 'tyomiehet'=>$tyomiehet));
@@ -15,7 +16,7 @@
     		$params = $_POST;
     		$merkinta = new Merkinta(array(
     			'kuvaus' => $params['kuvaus'],
-                'nimi' => $params['nimi'],
+                'nimi' => $_SESSION['kayttaja'],
     			'tunnit' => $params['tunnit'],
     			'kohde' => $params['kohde']
     			));

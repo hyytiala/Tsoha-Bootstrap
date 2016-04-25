@@ -9,7 +9,7 @@
 		}
 
 		public static function all($id){
-			$query = DB::connection()->prepare('SELECT Merkinta.paivays, Merkinta.tunnit, Merkinta.kuvaus, Tyomies.nimi FROM Merkinta, Tyomies WHERE Merkinta.tyomies = Tyomies.id AND Merkinta.kohde = :id');
+			$query = DB::connection()->prepare('SELECT Merkinta.paivays, Merkinta.tunnit, Merkinta.kuvaus, Tyomies.nimi FROM Merkinta, Tyomies WHERE Merkinta.tyomies = Tyomies.id AND Merkinta.kohde = :id ORDER BY Merkinta.id DESC');
     		$query->execute(array('id' => $id));
     		$rows = $query->fetchAll();
     		$merkinnat = array();

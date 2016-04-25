@@ -2,6 +2,18 @@
 {% block content %}
   <h1>Remonttikohteet</h1>
 
+  {% if message %}
+        <div class="alert alert-success">
+            {{message}}
+        </div>
+    {% endif %}
+
+    {% if error %}
+        <div class="alert alert-danger">
+            {{error}}
+        </div>
+    {% endif %}
+
   <p>
     <a href="{{base_path}}/kohde/uusi" class="btn btn-success">Lisää kohde</a>
   </p>

@@ -39,14 +39,23 @@
         <div class="collapse navbar-collapse" id="navigation">
           <ul class="nav navbar-nav">
             <!-- Navigaation linkit -->
+            {% if user_logged_in %}
             <li><a href="{{base_path}}/kohde">Kohteet</a></li>
             <li><a href="{{base_path}}/asiakas">Asiakkaat</a></li>
             <li><a href="{{base_path}}/tyomies">Työmiehet</a></li>
           </ul>
+          {% endif %}
+          {% if user_logged_in %}
+        <form class="navbar-form navbar-right" method="post" action="{{base_path}}/logout">
+          <button type="submit" class="btn btn-default">Kirjaudu ulos</button>
+        </form>
+      {% else %}
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="{{base_path}}/login">Kirjaudu sisään</a></li>
+        </ul>
+      {% endif %}
 
-          <ul class="nav navbar-nav navbar-right">
-        <li><a href="{{base_path}}/ogin">Kirjaudu sisään</a></li>
-      </ul>
+          
         </div>
       </div>
     </nav>
