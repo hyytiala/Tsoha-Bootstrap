@@ -15,12 +15,4 @@ Aiheena on tehdä remonttikohteiden tietokanta urakoitsijoille.
 * Käyttäjätunnus: admin
 * Salasana: admin
 
-## Suunnitelmat html sivuista
-* [Kirjautumisivu](http://hyytiala.users.cs.helsinki.fi/remonttidb)
-* [Kohdenäkymä(etusivu)](http://hyytiala.users.cs.helsinki.fi/remonttidb/kohteet)
-* [Kohteen sivu](http://hyytiala.users.cs.helsinki.fi/remonttidb/kohde)
-* [Kohteen muokkaus](http://hyytiala.users.cs.helsinki.fi/remonttidb/muokkaa)
-* [Asiakas lista](http://hyytiala.users.cs.helsinki.fi/remonttidb/asiakkaat)
-* [Asiakkaan muokkaus](http://hyytiala.users.cs.helsinki.fi/remonttidb/asiakasmuok)
-* [Työmieslista](http://hyytiala.users.cs.helsinki.fi/remonttidb/tyomiehet)
-* [Työmiesten muokkaus](http://hyytiala.users.cs.helsinki.fi/remonttidb/tyomiesmuok)
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons -lisenssi" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">RemonttiDB</span>, jonka tekijä on <span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">Otto Hyytiälä</span>, on lisensoitu <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Nimeä-EiKaupallinen-EiMuutoksia 4.0 Kansainvälinen -lisenssillä</a>.
