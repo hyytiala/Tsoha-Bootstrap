@@ -1,6 +1,13 @@
 {% extends "base.html" %}
 {% block content %}
+{% import "macros/forms.html" as forms %}
   <h1>Työmiehet</h1>
+
+  {% if message %}
+        <div class="alert alert-success">
+            {{message}}
+        </div>
+  {% endif %}
 
   <p>
     <a href="{{base_path}}/tyomies/uusi" class="btn btn-success">Lisää Työntekijä</a>
@@ -27,8 +34,12 @@
           <td>{{tyomies.puhelin}}</td>
           <td>{{tyomies.tunnit}}</td>
           <th><a class="btn btn-default btn-sm" href="{{base_path}}/tyomies/{{tyomies.id}}/edit">Muokkaa</a>
-          <th><a class="btn btn-danger btn-sm" href="#">Nollaa tunnit</a>
-          <th><a class="btn btn-danger btn-sm" href="#">Poista</a></th>
+          <th><a class="btn btn-danger btn-sm" href="{{base_path}}/tyomies/{{tyomies.id}}/nollaa">Nollaa tunnit</a>
+          <th>
+          {% if tyomies.id != session %}
+          {{forms.destroy_button("#{base_path}/tyomies/#{tyomies.id}/destroy")}}
+          {% endif%}
+          </th>
         </tr>
       {% endfor %}
     </tbody>

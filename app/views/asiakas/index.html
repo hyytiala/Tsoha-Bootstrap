@@ -3,17 +3,17 @@
 {% import "macros/forms.html" as forms %}
   <h1>Asiakkaat</h1>
 
-    {% if message %}
-        <div class="alert alert-success">
-            {{message}}
-        </div>
-    {% endif %}
+  {% if message %}
+    <div class="alert alert-success">
+      {{message}}
+    </div>
+  {% endif %}
 
-    {% if error %}
-        <div class="alert alert-danger">
-            {{error}}
-        </div>
-    {% endif %}
+  {% if error %}
+    <div class="alert alert-danger">
+      {{error}}
+    </div>
+  {% endif %}
 
   <p>
     <a href="{{base_path}}/asiakas/uusi" class="btn btn-success">Lisää asiakas</a>
@@ -45,7 +45,9 @@
           <td>{{asiakas.puhelin}}</td>
           <td>{{asiakas.email}}</td>
           <th><a class="btn btn-default btn-sm" href="{{base_path}}/asiakas/{{asiakas.id}}">Näytä</a>
-          <th>{{forms.destroy_button("#{base_path}/asiakas/#{asiakas.id}/destroy")}}</th>
+          {% if admin_logged_in %}
+            <th>{{forms.destroy_button("#{base_path}/asiakas/#{asiakas.id}/destroy")}}</th>
+          {% endif %}
         </tr>
       {% endfor %}
     </tbody>

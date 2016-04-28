@@ -1,24 +1,26 @@
 {% extends "base.html" %}
 {% block content %}
 {% import "macros/forms.html" as forms %}
-    <h1>{{asiakas.nimi}}</h1>
+  <h1>{{asiakas.nimi}}</h1>
 
-    {% if message %}
-        <div class="alert alert-success">
-            {{message}}
-        </div>
+  {% if message %}
+    <div class="alert alert-success">
+      {{message}}
+    </div>
+  {% endif %}
+
+  <p>
+    <a href="{{base_path}}/asiakas/{{asiakas.id}}/edit" class="btn btn-default">Muokkaa</a>
+    {% if admin_logged_in %}
+      {{forms.destroy_button("#{base_path}/asiakas/#{asiakas.id}/destroy")}}
     {% endif %}
+  </p>
 
-    <p>
-        <a href="{{base_path}}/asiakas/{{asiakas.id}}/edit" class="btn btn-default">Muokkaa</a>
-        {{forms.destroy_button("#{base_path}/asiakas/#{asiakas.id}/destroy")}}
-    </p>
-
-    <ul>
-      <li><strong>Laskutusosoite: </strong>{{asiakas.osoite}}</li>
-      <li><strong>Postinumero: </strong>{{asiakas.postinumero}}</li>
-      <li><strong>Postipaikka: </strong>{{asiakas.postipaikka}}</li>
-      <li><strong>Puhelin: </strong>{{asiakas.puhelin}}</li>
-      <li><strong>Sähköposti: </strong>{{asiakas.email}}</li>
-    </ul>
+  <ul>
+    <li><strong>Laskutusosoite: </strong>{{asiakas.osoite}}</li>
+    <li><strong>Postinumero: </strong>{{asiakas.postinumero}}</li>
+    <li><strong>Postipaikka: </strong>{{asiakas.postipaikka}}</li>
+    <li><strong>Puhelin: </strong>{{asiakas.puhelin}}</li>
+    <li><strong>Sähköposti: </strong>{{asiakas.email}}</li>
+  </ul>
 {% endblock %}

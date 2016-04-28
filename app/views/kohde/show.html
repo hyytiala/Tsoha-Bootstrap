@@ -9,9 +9,11 @@
         </div>
     {% endif %}
 <p>
-    <button class="btn btn-danger">Poista</button> <a href="#" class="btn btn-default">Muokkaa</a>
-  </p>
+        <a href="{{base_path}}/kohde/{{kohde.id}}/edit" class="btn btn-default">Muokkaa</a>
+        {{forms.destroy_button("#{base_path}/kohde/#{kohde.id}/destroy")}}
+    </p>
   <ul>
+    <li><strong>Kohdetunnus: </strong>{{kohde.id}}</li>
     <li><strong>Asiakas: </strong>{{kohde.nimi}}</li>
     <li><strong>Osoite: </strong>{{kohde.osoite}}</li>
     <li><strong>Aloitettu: </strong>{{kohde.aloitettu}}</li>

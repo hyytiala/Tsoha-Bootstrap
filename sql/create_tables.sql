@@ -14,7 +14,8 @@ CREATE TABLE Tyomies(
 	kayttaja varchar(50) NOT NULL,
 	salasana varchar(50) NOT NULL,
 	puhelin varchar(50) NOT NULL,
-	tunnit DECIMAL DEFAULT 0
+	tunnit DECIMAL DEFAULT 0,
+	admin boolean DEFAULT FALSE
 );
 
 CREATE TABLE Kohde(

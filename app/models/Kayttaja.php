@@ -2,7 +2,7 @@
 
 
 	class Kayttaja extends BaseModel{
-		public $id, $kayttaja, $salasana, $nimi;
+		public $id, $kayttaja, $salasana, $nimi, $admin;
 		
 		function __construct($attributes){
 			parent::__construct($attributes);
@@ -17,7 +17,8 @@
     				'id' => $row['id'],
     				'kayttaja' => $row['kayttaja'],
     				'salasana' => $row['salasana'],
-    				'nimi' => $row['nimi']
+    				'nimi' => $row['nimi'],
+    				'admin' => $row['admin']
     			));
     			return $kayttaja;
     		}else{
@@ -33,7 +34,8 @@
 			  $kayttaja = new Kayttaja(array(
     				'id' => $row['id'],
     				'kayttaja' => $row['kayttaja'],
-    				'nimi' => $row['nimi']
+    				'nimi' => $row['nimi'],
+    				'admin' => $row['admin']
     			));
     			return $kayttaja;
 			}else{

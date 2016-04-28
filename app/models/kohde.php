@@ -1,7 +1,7 @@
 <?php
 
 	class Kohde extends BaseModel{
-		public $id, $osoite, $aloitettu, $tila, $kuvaus, $katselu, $nimi, $viimeisin;
+		public $id, $osoite, $aloitettu, $tila, $kuvaus, $katselu, $nimi, $viimeisin, $asiakas;
 
 		public function __construct($attributes){
     		parent::__construct($attributes);
@@ -28,7 +28,7 @@
 		}
 
 		public static function find($id){
-			$query = DB::connection()->prepare('SELECT Kohde.id, Kohde.osoite, Kohde.aloitettu, Kohde.tila, Kohde.kuvaus, Kohde.katselu, Asiakas.nimi FROM Kohde, Asiakas WHERE Asiakas.id = Kohde.asiakas_id AND Kohde.id = :id LIMIT 1');
+			$query = DB::connection()->prepare('SELECT Kohde.id, Kohde.osoite, Kohde.aloitettu, Kohde.tila, Kohde.kuvaus, Kohde.katselu, Asiakas.nimi, Kohde.asiakas_id FROM Kohde, Asiakas WHERE Asiakas.id = Kohde.asiakas_id AND Kohde.id = :id LIMIT 1');
     		$query->execute(array('id' => $id));
     		$row = $query->fetch();
 
@@ -40,7 +40,8 @@
                     'tila' => $row['tila'],
                     'kuvaus' => $row['kuvaus'],
                     'katselu' => $row['katselu'],
-                    'nimi' => $row['nimi']
+                    'nimi' => $row['nimi'],
+                    'asiakas' => $row['asiakas_id']
     			));
     			return $kohde;
     		}
@@ -52,6 +53,12 @@
             $query->execute(array('osoite' => $this->osoite, 'aloitettu' => $this->aloitettu, 'kuvaus' => $this->kuvaus, 'katselu' => $this->katselu, 'nimi' => $this->nimi, 'tila' => 'kesken'));
             $row = $query->fetch();
             $this->id = $row['id'];
+        }
+
+        public function update(){
+            $query = DB::connection()->prepare('UPDATE Kohde SET asiakas_id = :nimi, osoite = :osoite, tila = :tila, aloitettu = :aloitettu, kuvaus = :kuvaus, katselu = :katselu WHERE id = :id');
+            $query->execute(array('nimi' => $this->nimi, 'osoite' => $this->osoite, 'tila' => $this->tila, 'aloitettu' => $this->aloitettu, 'kuvaus' => $this->kuvaus, 'katselu' => $this->katselu, 'id' => $this->id));
+            $row = $query->fetch();
         }
 
         public static function asiakas($id){
@@ -81,5 +88,17 @@
                 $errors[] = 'Valitse kohteen katseluoikeus';
             }
             return $errors;
+        }
+
+        public function poista_merkinnat(){
+            $query = DB::connection()->prepare('DELETE FROM Merkinta WHERE kohde = :id');
+            $query->execute(array('id' => $this->id));
+            $row = $query->fetch();
+        }
+
+        public function destroy(){
+            $query = DB::connection()->prepare('DELETE FROM Kohde WHERE id = :id');
+            $query->execute(array('id' => $this->id));
+            $row = $query->fetch();
         }
 	}

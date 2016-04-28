@@ -21,4 +21,21 @@
       }
     }
 
+    public static function get_admin(){
+      if($_SESSION['admin'] == 1){
+      $kayttaja_id = $_SESSION['kayttaja'];
+      $kayttaja = Kayttaja::find($kayttaja_id);
+
+      return $kayttaja;
+      }
+
+      return null;
+    }
+
+    public static function check_admin(){
+      if(!isset($_SESSION['kayttaja'])){
+        Redirect::to('/login', array('message' => 'Kirjaudu sisään!'));
+      }
+    }
+
   }

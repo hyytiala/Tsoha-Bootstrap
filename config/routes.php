@@ -65,6 +65,18 @@
     KohteetController::tarkastele($id);
   });
 
+  $routes->get('/kohde/:id/edit', function($id){
+    KohteetController::edit($id);
+  });
+
+  $routes->post('/kohde/:id/edit', function($id){
+    KohteetController::update($id);
+  });
+
+  $routes->post('/kohde/:id/destroy', function($id){
+    KohteetController::destroy($id);
+  });
+
   //Tyomies
   $routes->get('/tyomies', function() {
     TyomiesController::index();
@@ -86,6 +98,14 @@
     TyomiesController::update($id);
   });
 
+  $routes->get('/tyomies/:id/nollaa', function($id){
+    TyomiesController::nollaa_tunnit($id);
+  });
+
+  $routes->post('/tyomies/:id/destroy', function($id){
+    TyomiesController::destroy($id);
+  });
+
   //merkinta
   $routes->get('/merkinta/:id', function($id) {
     MerkintaController::create($id);
@@ -94,6 +114,7 @@
   $routes->post('/merkinta', function(){
     MerkintaController::store();
   });
+
   $routes->post('/merkinta/:id/destroy', function($id){
     MerkintaController::destroy($id);
   });

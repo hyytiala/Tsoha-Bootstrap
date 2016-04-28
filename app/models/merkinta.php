@@ -10,7 +10,7 @@
 		}
 
 		public static function all($id){
-			$query = DB::connection()->prepare('SELECT Merkinta.id, Merkinta.paivays, Merkinta.tunnit, Merkinta.kuvaus, Tyomies.nimi FROM Merkinta, Tyomies WHERE Merkinta.tyomies = Tyomies.id AND Merkinta.kohde = :id ORDER BY Merkinta.id DESC');
+			$query = DB::connection()->prepare('SELECT Merkinta.id, Merkinta.paivays, Merkinta.tunnit, Merkinta.kuvaus, Tyomies.nimi FROM Merkinta FULL JOIN Tyomies ON Tyomies.id = Merkinta.tyomies WHERE Merkinta.kohde = :id ORDER BY Merkinta.id DESC');
     		$query->execute(array('id' => $id));
     		$rows = $query->fetchAll();
     		$merkinnat = array();
@@ -64,6 +64,12 @@
 
         public function destroy(){
             $query = DB::connection()->prepare('DELETE FROM Merkinta WHERE id = :id');
+            $query->execute(array('id' => $this->id));
+            $row = $query->fetch();
+        }
+
+        public function poista_tyomies($id){
+            $query = DB::connection()->prepare('UPDATE Merkinta SET tyomies = NULL WHERE tyomies = :id');
             $query->execute(array('id' => $this->id));
             $row = $query->fetch();
         }

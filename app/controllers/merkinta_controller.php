@@ -23,9 +23,12 @@
 
             $merkinta = new Merkinta($attributes);
             $errors = $merkinta->errors();
+            $tyomies = Tyomies::find($_SESSION['kayttaja']);
+            $tunnit = $tyomies->tunnit + $params['tunnit'];
 
             if(count($errors) == 0){
                 $merkinta->save();
+                $tyomies->save_tunnit($tunnit);
                 Redirect::to('/kohde/' . $params['kohde'], array('message' => 'Merkintä lisätty'));
 
             }else{
