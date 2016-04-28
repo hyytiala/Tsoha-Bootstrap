@@ -1,7 +1,12 @@
 <?php
 
+  //Frontpage
   $routes->get('/', function() {
-    Redirect::to('/tarkastele');
+    if(isset($_SESSION['kayttaja'])){
+      Redirect::to('/kohde');
+    }else{
+      Redirect::to('/tarkastele');
+    }
   });
 
   $routes->get('/hiekkalaatikko', function() {
@@ -29,6 +34,7 @@
   $routes->get('/asiakas/:id/edit', function($id){
     AsiakkaatController::edit($id);
   });
+
   $routes->post('/asiakas/:id/edit', function($id){
     AsiakkaatController::update($id);
   });
@@ -72,6 +78,14 @@
     TyomiesController::store();
   });
 
+  $routes->get('/tyomies/:id/edit', function($id){
+    TyomiesController::edit($id);
+  });
+
+  $routes->post('/tyomies/:id/edit', function($id){
+    TyomiesController::update($id);
+  });
+
   //merkinta
   $routes->get('/merkinta/:id', function($id) {
     MerkintaController::create($id);
@@ -79,6 +93,9 @@
 
   $routes->post('/merkinta', function(){
     MerkintaController::store();
+  });
+  $routes->post('/merkinta/:id/destroy', function($id){
+    MerkintaController::destroy($id);
   });
 
 //login

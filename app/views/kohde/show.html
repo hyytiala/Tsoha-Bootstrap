@@ -1,6 +1,13 @@
 {% extends "base.html" %}
 {% block content %}
+{% import "macros/forms.html" as forms %}
 <h1>{{kohde.osoite}}</h1>
+
+{% if message %}
+        <div class="alert alert-success">
+            {{message}}
+        </div>
+    {% endif %}
 <p>
     <button class="btn btn-danger">Poista</button> <a href="#" class="btn btn-default">Muokkaa</a>
   </p>
@@ -35,6 +42,7 @@
         <th>Työtunnit</th>
         <th>Kuvaus</th>
         <th></th>
+        <th></th>
       </tr>
     </thead>
 
@@ -45,7 +53,8 @@
           <td>{{merkinta.paivays}}</td>
           <td>{{merkinta.tunnit}}</td>
           <td>{{merkinta.kuvaus}}</td>
-          <th><a class="btn btn-danger btn-sm" href="#">Poista merkintä</a></th>
+          <td>{{merkinta.id}}</td>
+          <th>{{forms.destroy_button("#{base_path}/merkinta/#{merkinta.id}/destroy")}}</th>
         </tr>
       {% endfor %}
     </tbody>

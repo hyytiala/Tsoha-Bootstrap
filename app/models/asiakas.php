@@ -5,7 +5,7 @@
 
 		public function __construct($attributes){
     		parent::__construct($attributes);
-            $this->validators = array('validate_name');
+            $this->validators = array('validate_asiakas');
   		}
 
 		public static function all(){
@@ -75,7 +75,7 @@
             return $nro;
         }
 
-        public function validate_name(){
+        public function validate_asiakas(){
             $errors = array();
             if($this->nimi == '' || $this->nimi == null){
                 $errors[] = 'Nimi ei saa olla tyhjä';

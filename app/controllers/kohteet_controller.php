@@ -39,19 +39,24 @@
 
     	public static function store(){
     		$params = $_POST;
-    		$kohde = new Kohde(array(
+    		$attributes = array(
     			'osoite' => $params['osoite'],
     			'aloitettu' => $params['aloitettu'],
     			'kuvaus' => $params['kuvaus'],
     			'katselu' => $params['katselu'],
     			'nimi' => $params['nimi'],
-    			));
+    		);
 
-    		
+            $kohde = new Kohde($attributes);
+            $errors = $kohde->errors();
 
-    		$kohde->save();
+            if(count($errors) == 0){
+                $kohde->save();
+                Redirect::to('/kohde/' . $kohde->id, array('message' => 'Kohde on lisätty kirjastoosi!'));
 
-    		Redirect::to('/kohde/' . $kohde->id, array('message' => 'Kohde on lisätty kirjastoosi!'));
-
+            }else{
+                $asiakkaat = Asiakas::all();
+                View::make('kohde/new.html', array('errors' => $errors, 'attributes' => $attributes, 'asiakkaat' => $asiakkaat));
+            }    		
     	}
 	}

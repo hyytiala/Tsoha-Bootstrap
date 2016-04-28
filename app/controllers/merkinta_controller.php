@@ -14,17 +14,33 @@
 
     	public static function store(){
     		$params = $_POST;
-    		$merkinta = new Merkinta(array(
+    		$attributes = array(
     			'kuvaus' => $params['kuvaus'],
                 'nimi' => $_SESSION['kayttaja'],
     			'tunnit' => $params['tunnit'],
     			'kohde' => $params['kohde']
-    			));
+    			);
 
+            $merkinta = new Merkinta($attributes);
+            $errors = $merkinta->errors();
 
-    		$merkinta->save();
+            if(count($errors) == 0){
+                $merkinta->save();
+                Redirect::to('/kohde/' . $params['kohde'], array('message' => 'Merkintä lisätty'));
 
-    		Redirect::to('/kohde/' . $params['kohde'], array('message' => 'Kohde on lisätty kirjastoosi!'));
-
+            }else{
+                $id = $params['kohde'];
+                $kohde = Kohde::find($id);
+                View::make('merkinta/new.html', array('kohde'=>$kohde,'errors' => $errors, 'attributes' => $attributes));
+            }
     	}
+
+        public static function destroy($id){
+            self::check_logged_in();
+            $merkinta = new Merkinta(array('id' => $id));
+            $kohdeid = Merkinta::find($id);
+            $kohde = $kohdeid->kohde;
+            $merkinta->destroy();
+            Redirect::to('/kohde/' . $kohde, array('message' => 'Merkintä on poistettu!'));            
+        }
 	}

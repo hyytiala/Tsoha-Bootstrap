@@ -7,18 +7,19 @@
     }
 
     public static function sandbox(){
-    $esa = new Asiakas(array(
-    'nimi' => 'esa',
-    'osoite' => 'tölikkä',
-    'postinumero' => '005540',
-    'postipaikka' => 'hel',
-    'puhelin' => '04055',
-    'email' => 'otto@fi'
+    $esa = new Kohde(array(
+    'osoite' => '',
+    'aloitettu' => '21.5.2016',
+    'kuvaus' => '',
+    'katselu' => '',
+    'nimi' => ''
   ));
 
   $errors = $esa->errors();
+  $merkinnat = Merkinta::all(5);
 
   Kint::dump($errors);
+  Kint::dump($merkinnat);
     }
 
     public static function kohteet(){

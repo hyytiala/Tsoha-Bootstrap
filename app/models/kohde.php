@@ -5,6 +5,7 @@
 
 		public function __construct($attributes){
     		parent::__construct($attributes);
+            $this->validators = array('validate_kohde');
   		}
 
 		public static function all(){
@@ -63,5 +64,22 @@
 
         public function katselu(){
             return $this->katselu;
+        }
+
+        public function validate_kohde(){
+            $errors = array();
+            if($this->osoite == '' || $this->osoite == null){
+                $errors[] = 'Osoite ei saa olla tyhjä';
+            }
+            if($this->aloitettu == '' || $this->aloitettu == null){
+                $errors[] = 'Päivämäärä ei saa olla tyhjä';
+            }
+            if($this->kuvaus == '' || $this->kuvaus == null){
+                $errors[] = 'Kuvaus ei saa olla tyhjä';
+            }
+            if($this->katselu == null){
+                $errors[] = 'Valitse kohteen katseluoikeus';
+            }
+            return $errors;
         }
 	}

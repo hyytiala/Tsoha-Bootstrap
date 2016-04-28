@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-  <h1>Lisää uusi Työntekijä</h1>
+  <h1>Muokkaa henkilöä: {{attributes.nimi}}</h1>
 
   {% if errors %}
       <div class="alert alert-danger">
@@ -12,7 +12,7 @@
       </div>
   {% endif %}
 
-  <form method="post" action="{{base_path}}/tyomies">
+  <form method="post" action="{{base_path}}/tyomies/{{attributes.id}}/edit">
     <div class="form-group">
       <label>Nimi</label>
       <input type="text" name="nimi" class="form-control" value="{{attributes.nimi}}">
@@ -24,10 +24,6 @@
     <div class="form-group">
       <label>Käyttäjänimi</label>
       <input type="text" name="kayttaja" class="form-control" value="{{attributes.kayttaja}}">
-    </div>
-    <div class="form-group">
-      <label>Salasana</label>
-      <input type="password" name="salasana" class="form-control">
     </div>
     <div class="form-group">
       <button type="submit" class="btn btn-primary">Tallenna</button>

@@ -23,17 +23,49 @@
 
 		public static function store(){
 			$params = $_POST;
-			$tyomies = new Tyomies(array(
+			$attributes = array(
 				'nimi' => $params['nimi'],
 				'puhelin' => $params['puhelin'],
 				'salasana' => $params['salasana'],
 				'kayttaja' => $params['kayttaja']
-				));
+				);
 
+			$tyomies = new Tyomies($attributes);
+			//$errors = $tyomies->errors();
+			$errors = array_merge($tyomies->errors(), $tyomies->validate_salasana());
 
-			$tyomies->save();
+			if(count($errors) == 0){
+				$tyomies->save();
+				Redirect::to('/tyomies', array('message' => 'Työntekijä on lisätty'));
 
-			Redirect::to('/tyomies', array('message' => 'Työntekijä on lisätty'));
-
+			}else{
+				View::make('tyomies/new.html', array('errors' => $errors, 'attributes' => $attributes));
 			}
+		}
+
+		public static function edit($id){
+    		$tyomies = Tyomies::find($id);
+    		View::make('tyomies/edit.html', array('attributes' => $tyomies));
+		}
+
+		public static function update($id){
+			$params = $_POST;
+			$attributes = array(
+				'id' => $id,
+				'nimi' => $params['nimi'],
+				'puhelin' => $params['puhelin'],
+				'kayttaja' => $params['kayttaja'],
+				);
+
+			$tyomies = new Tyomies($attributes);
+			$errors = $tyomies->errors();
+
+			if(count($errors) == 0){
+				$tyomies->update();
+				Redirect::to('/tyomies', array('message' => 'Työntekijä on päivitetty'));
+
+			}else{
+				View::make('tyomies/edit.html', array('errors' => $errors, 'attributes' => $attributes));
+			}
+		}
 	}

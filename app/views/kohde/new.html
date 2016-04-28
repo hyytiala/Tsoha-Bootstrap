@@ -2,10 +2,20 @@
 {% block content %}
   <h1>Lisää uusi kohde</h1>
 
+  {% if errors %}
+      <div class="alert alert-danger">
+        <ul>
+          {% for error in errors %}
+              <li>{{error}}</li>
+          {% endfor %}
+          </ul>
+      </div>
+    {% endif %}
+
   <form method="post" action="{{base_path}}/kohde">
   	<div class="form-group">
     <label>Asiakas</label>
-   <select class="form-control" name="nimi" >
+   <select class="form-control" name="nimi">
     {% for asiakas in asiakkaat %}
       <option value="{{asiakas.id}}">{{asiakas.nimi}}</option>
     {% endfor %}
@@ -19,19 +29,18 @@
 
     <div class="form-group">
       <label>Aloitettu</label>
-      <input type="date" class="form-control" name="aloitettu">
+      <input type="date" class="form-control" name="aloitettu"value="{{attributes.aloitettu}}">
     </div>
 
     <div class="form-group">
       <label>Kuvaus</label>
-      <textarea class="form-control" name="kuvaus">Kuvaus
-      </textarea>
+      <textarea class="form-control" name="kuvaus">{{attributes.kuvaus}}</textarea>
     </div>
 
     <div class="form-group">
       <label>Salli katselu kohdetunnuksella</label>
       <div>
-        <input type="radio" name="katselu" value="true">Kyllä</input>
+        <input type="radio" name="katselu" value="true" checked>Kyllä</input>
       </div>
       <div>
         <input type="radio" name="katselu" value="false">Ei</input>

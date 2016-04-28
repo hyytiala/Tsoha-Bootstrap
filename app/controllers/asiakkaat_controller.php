@@ -50,7 +50,6 @@
 		}
 
 		public static function update($id){
-			self::check_logged_in();
 			$params = $_POST;
 			$attributes = array(
 				'id' => $id,
