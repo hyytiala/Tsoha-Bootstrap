@@ -59,6 +59,9 @@
             if($this->tunnit == '' || $this->tunnit == null){
                 $errors[] = 'Tunnit ei saa olla tyhjä';
             }
+            if(!is_numeric($this->tunnit)){
+                $errors[] = 'Tunnit täytyy olla numero. Käytä pistettä(.) pilkun(,) sijaan';
+            }
             return $errors;
         }
 

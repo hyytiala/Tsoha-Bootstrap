@@ -4,44 +4,35 @@
   <h1>Työmiehet</h1>
 
   {% if message %}
-        <div class="alert alert-success">
-            {{message}}
-        </div>
+    <div class="alert alert-success">
+      {{message}}
+    </div>
   {% endif %}
 
   <p>
-    <a href="{{base_path}}/tyomies/uusi" class="btn btn-success">Lisää Työntekijä</a>
+    <a class="btn btn-default" href="{{base_path}}/tyomies/{{session}}/edit" role="button">Muokkaa tietojani</a>
+    <a class="btn btn-default" href="{{base_path}}/tyomies/{{session}}/salasana" role="button">Vaihda salasana</a>
   </p>
-
-  <table class="table table-striped table-bordered">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Nimi</th>
-        <th>Puhelin</th>
-        <th>Tunnit</th>
-        <th></th>
-        <th></th>
-        <th></th>
-      </tr>
-    </thead>
-
-    <tbody>
+  <div class="row">
+    <div class="col-xs-7">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th class="col-md-1">ID</th>
+            <th class="col-md-3">Nimi</th>
+            <th class="col-md-3">Puhelin</th>
+          </tr>
+      </thead>
+      <tbody>
       {% for tyomies in tyomiehet %}
         <tr>
           <td>{{tyomies.id}}</td>
           <td>{{tyomies.nimi}}</td>
           <td>{{tyomies.puhelin}}</td>
-          <td>{{tyomies.tunnit}}</td>
-          <th><a class="btn btn-default btn-sm" href="{{base_path}}/tyomies/{{tyomies.id}}/edit">Muokkaa</a>
-          <th><a class="btn btn-danger btn-sm" href="{{base_path}}/tyomies/{{tyomies.id}}/nollaa">Nollaa tunnit</a>
-          <th>
-          {% if tyomies.id != session %}
-          {{forms.destroy_button("#{base_path}/tyomies/#{tyomies.id}/destroy")}}
-          {% endif%}
-          </th>
         </tr>
       {% endfor %}
-    </tbody>
-  </table>
+      </tbody>
+      </table>
+    </div>
+  </div>
 {% endblock %}

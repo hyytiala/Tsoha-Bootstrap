@@ -10,10 +10,12 @@
   {% endif %}
 
   <p>
-    <a href="{{base_path}}/asiakas/{{asiakas.id}}/edit" class="btn btn-default">Muokkaa</a>
-    {% if admin_logged_in %}
-      {{forms.destroy_button("#{base_path}/asiakas/#{asiakas.id}/destroy")}}
-    {% endif %}
+    <form method="post" action="{{base_path}}/asiakas/{{asiakas.id}}/destroy" class="destroy-form" data-confirm="Vahvista poistaminen?">
+      {% if admin_logged_in %}
+        <button type="submit" class="btn btn-danger">{{text|default('Poista')}}</button>
+      {% endif%}
+      <a href="{{base_path}}/asiakas/{{asiakas.id}}/edit" class="btn btn-default">Muokkaa</a>
+    </form>
   </p>
 
   <ul>

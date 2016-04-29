@@ -5,19 +5,24 @@
 	{
 		
 		public static function index(){
-			//self::check_logged_in();
+			self::check_logged_in();
 			$tyomiehet = Tyomies::all();
-			View::make('tyomies/index.html', array('tyomiehet' => $tyomiehet, 'session'=>$_SESSION['kayttaja']));
+			if (self::admin()){
+				View::make('tyomies/admin_index.html', array('tyomiehet' => $tyomiehet, 'session'=>$_SESSION['kayttaja']));
+			}else{
+				View::make('tyomies/index.html', array('tyomiehet' => $tyomiehet, 'session'=>$_SESSION['kayttaja']));
+			}
 		}
 
 		public static function show($id){
-			//self::check_logged_in();
+			self::check_logged_in();
 			$asiakas = Asiakas::find($id);
 			View::make('tyomies/show.html', array('asiakas'=>$asiakas,));
 		}
 
 		public static function create(){
-			//self::check_logged_in();
+			self::check_logged_in();
+			self::check_admin();
 			View::make('tyomies/new.html');
 		}
 

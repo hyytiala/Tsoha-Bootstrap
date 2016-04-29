@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block content %}
+{% import "macros/forms.html" as forms %}
+  <h1>Työmiehet</h1>
+
+  {% if message %}
+    <div class="alert alert-success">
+      {{message}}
+    </div>
+  {% endif %}
+
+  <p>
+    <a class="btn btn-success" href="{{base_path}}/tyomies/uusi" role="button">Lisää työntekijä</a>
+    <a class="btn btn-default" href="{{base_path}}/tyomies/{{session}}/salasana" role="button">Vaihda salasana</a>
+  </p>
+  <div class="row">
+  <div class="col-xs-5">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th class="col-md-1">ID</th>
+        <th class="col-md-2">Nimi</th>
+        <th class="col-md-2">Puhelin</th>
+        <th>Tunnit</th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+  </thead>
+  <tbody>
+  {% for tyomies in tyomiehet %}
+    <tr>
+      <td>{{tyomies.id}}</td>
+      <td>{{tyomies.nimi}}</td>
+      <td>{{tyomies.puhelin}}</td>
+      <td>{{tyomies.tunnit}}</td>
+      <td><a class="btn btn-default btn-sm" href="{{base_path}}/tyomies/{{tyomies.id}}/edit">Muokkaa</a></td>
+      <td><a class="btn btn-danger btn-sm" href="{{base_path}}/tyomies/{{tyomies.id}}/nollaa">Nollaa tunnit</a></td>
+      <td>{% if tyomies.id != session %}{{forms.destroy_button("#{base_path}/tyomies/#{tyomies.id}/destroy")}}{% endif%}</td>
+      <td>{{forms.destroy_button("#{base_path}/tyomies/#{tyomies.id}/reset", "Nollaa salasana")}}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+  </table>
+  </div>
+  </div>
+{% endblock %}

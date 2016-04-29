@@ -119,20 +119,28 @@
     MerkintaController::destroy($id);
   });
 
-//login
+//User & Login
   $routes->get('/tarkastele', function(){
     UserController::katselu();
   });
   $routes->post('/tarkastele', function(){
-   UserController::handle_katselu();
+    UserController::handle_katselu();
   });
   $routes->get('/login', function(){
-  UserController::login();
+    UserController::login();
   });
   $routes->post('/login', function(){
-  UserController::handle_login();
+    UserController::handle_login();
   });
   $routes->post('/logout', function(){
-  UserController::logout();
+    UserController::logout();
   });
-
+  $routes->get('/tyomies/:id/salasana', function($id){
+    UserController::edit_password($id);
+  });
+  $routes->post('/tyomies/:id/salasana', function($id){
+    UserController::update_password($id);
+  });
+  $routes->post('/tyomies/:id/reset', function($id){
+    UserController::reset_password($id);
+  });

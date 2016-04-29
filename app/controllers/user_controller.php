@@ -31,4 +31,35 @@ class UserController extends BaseController{
     $id = $params['id'];
     Redirect::to('/tarkastele/' . $id);
   }
+
+  public static function edit_password($id){
+        $kayttaja = Kayttaja::find($id);
+        View::make('kayttaja/salasana.html', array('attributes' => $kayttaja));
+    }
+
+  public static function update_password($id){
+    $params = $_POST;
+    $attributes = array(
+      'id' => $id,
+      'salasana' => $params['salasana']
+      );
+
+    $kayttaja = new Kayttaja($attributes);
+    $errors = array();
+    $errors[] = 'Salasanat eivät täsmää';
+
+    if(Kayttaja::authenticate_password($params['nyk'], $id) && $params['salasana'] == $params['re']){
+      $kayttaja->update_password();
+      Redirect::to('/tyomies', array('message' => 'Salasana on päivitetty'));
+    }else{
+      View::make('kayttaja/salasana.html', array('errors' => $errors, 'attributes' => $attributes));
+    }
+  }
+
+  public static function reset_password($id){
+    self::check_logged_in();
+    $kayttaja = new Kayttaja(array('id' => $id));
+    $kayttaja->reset_password();
+    Redirect::to('/tyomies', array('message' => 'Salasana nollattu: salasana'));
+  }
 }

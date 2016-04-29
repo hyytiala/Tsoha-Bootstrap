@@ -30,7 +30,9 @@
         <th>Puhelinnumero</th>
         <th>Sähköposti</th>
         <th></th>
-        <th></th>
+        {% if admin_logged_in %}
+          <th></th>
+        {% endif %}
       </tr>
     </thead>
 

@@ -25,16 +25,18 @@
       <label>Käyttäjänimi</label>
       <input type="text" name="kayttaja" class="form-control" value="{{attributes.kayttaja}}">
     </div>
-    <div class="checkbox">
-      <label>
-      {% if attributes.admin %}
-        <input name="admin" type="checkbox" value="true" checked>
-      {% else %}
-        <input name="admin" type="checkbox" value="true">
-      {% endif %}
-          Admin
-      </label>
-    </div>
+    {% if admin_logged_in %}
+      <div class="checkbox">
+        <label>
+        {% if attributes.admin %}
+          <input name="admin" type="checkbox" value="true" checked>
+        {% else %}
+          <input name="admin" type="checkbox" value="true">
+        {% endif %}
+            Admin
+        </label>
+      </div>
+    {% endif %}
     <div class="form-group">
       <button type="submit" class="btn btn-primary">Tallenna</button>
     </div>

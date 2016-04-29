@@ -1,6 +1,5 @@
 <?php
 	
-	
 	class AsiakkaatController extends BaseController
 	{
 		

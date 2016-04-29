@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
+{% import "macros/forms.html" as forms %}
   <h1>{{kohde.osoite}}</h1>
 
   {% if message %}
@@ -7,9 +8,11 @@
       {{message}}
     </div>
   {% endif %}
-
   <p>
-    <a href="{{base_path}}/kohde/{{kohde.id}}/edit" class="btn btn-default">Muokkaa</a>
+    <form method="post" action="{{base_path}}/kohde/{{kohde.id}}/destroy" class="destroy-form" data-confirm="Vahvista poistaminen?">
+      <button type="submit" class="btn btn-danger">{{text|default('Poista')}}</button>
+      <a href="{{base_path}}/kohde/{{kohde.id}}/edit" class="btn btn-default">Muokkaa</a>
+    </form>
   </p>
 
   <ul>
@@ -36,14 +39,17 @@
   <p>
     <a href="{{base_path}}/merkinta/{{kohde.id}}" class="btn btn-success">Lisää merkintä</a>
   </p>
+
   <div class="row">
-    <div class="col-xs-5">
+    <div class="col-xs-8">
       <table class="table table-striped">
         <thead>
           <tr>
-            <th>Työntekijä</th>
-            <th>Päiväys</th>
-            <th>Kuvaus</th>
+            <th class="col-md-3">Työntekijä</th>
+            <th class="col-md-2">Päiväys</th>
+            <th class="col-md-1">Työtunnit</th>
+            <th class="col-md-6">Kuvaus</th>
+            <th class="col-md-2"></th>
           </tr>
         </thead>
 
@@ -52,7 +58,9 @@
             <tr>
               <td>{{merkinta.nimi}}</td>
               <td>{{merkinta.paivays}}</td>
+              <td>{{merkinta.tunnit}}</td>
               <td>{{merkinta.kuvaus}}</td>
+              <td>{{forms.destroy_button("#{base_path}/merkinta/#{merkinta.id}/destroy")}}</td>
             </tr>
           {% endfor %}
         </tbody>

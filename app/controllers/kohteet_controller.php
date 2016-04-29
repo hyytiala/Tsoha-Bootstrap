@@ -14,7 +14,11 @@
             self::check_logged_in();
             $merkinnat = Merkinta::all($id);
 			$kohde = Kohde::find($id);
-			View::make('kohde/show.html', array('kohde'=>$kohde, 'merkinnat' => $merkinnat));
+            if (self::admin()){
+                View::make('kohde/admin_show.html', array('kohde'=>$kohde, 'merkinnat' => $merkinnat));
+            }else{
+                View::make('kohde/show.html', array('kohde'=>$kohde, 'merkinnat' => $merkinnat));
+            }
 		}
 
         public static function tarkastele($id){
