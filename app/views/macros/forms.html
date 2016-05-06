@@ -1,5 +1,5 @@
 {% macro destroy_button(action, text) %}
-	<form method="post" action="{{action}}" class="destroy-form" data-confirm="{{text|default('Vahvista poistaminen')}}">
-		<button type="submit" class="btn btn-danger">{{text|default('Poista')}}</button>
-	</form>
+  <form method="post" action="{{action}}" class="destroy-form" data-confirm="{{text|default('Vahvista poistaminen')}}">
+    <button type="submit" class="btn btn-danger">{{text|default('Poista')}}</button>
+  </form>
 {% endmacro %}

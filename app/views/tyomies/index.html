@@ -14,25 +14,27 @@
     <a class="btn btn-default" href="{{base_path}}/tyomies/{{session}}/salasana" role="button">Vaihda salasana</a>
   </p>
   <div class="row">
-    <div class="col-xs-7">
-      <table class="table table-striped">
-        <thead>
+    <div class="table-responsive">
+      <div class="col-xs-7">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th class="col-md-1">ID</th>
+              <th class="col-md-3">Nimi</th>
+              <th class="col-md-3">Puhelin</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for tyomies in tyomiehet %}
           <tr>
-            <th class="col-md-1">ID</th>
-            <th class="col-md-3">Nimi</th>
-            <th class="col-md-3">Puhelin</th>
+            <td>{{tyomies.id}}</td>
+            <td>{{tyomies.nimi}}</td>
+            <td>{{tyomies.puhelin}}</td>
           </tr>
-      </thead>
-      <tbody>
-      {% for tyomies in tyomiehet %}
-        <tr>
-          <td>{{tyomies.id}}</td>
-          <td>{{tyomies.nimi}}</td>
-          <td>{{tyomies.puhelin}}</td>
-        </tr>
-      {% endfor %}
-      </tbody>
-      </table>
+        {% endfor %}
+        </tbody>
+        </table>
+      </div>
     </div>
   </div>
 {% endblock %}

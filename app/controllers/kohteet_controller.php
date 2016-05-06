@@ -100,5 +100,5 @@
             $kohde->poista_merkinnat();
             $kohde->destroy();
             Redirect::to('/kohde', array('message' => 'Kohde on poistettu!'));
-            }
+        }
 	}

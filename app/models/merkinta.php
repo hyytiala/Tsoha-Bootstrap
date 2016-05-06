@@ -1,31 +1,31 @@
 <?php
 
-	
-	class Merkinta extends BaseModel{
-		public $id, $paivays, $tunnit, $kuvaus, $kohde, $nimi, $tyomies;
-		
-		public function __construct($attributes){
-			parent::__construct($attributes);
+    
+    class Merkinta extends BaseModel{
+        public $id, $paivays, $tunnit, $kuvaus, $kohde, $nimi, $tyomies;
+        
+        public function __construct($attributes){
+            parent::__construct($attributes);
             $this->validators = array('validate_merkinta');
-		}
+        }
 
-		public static function all($id){
-			$query = DB::connection()->prepare('SELECT Merkinta.id, Merkinta.paivays, Merkinta.tunnit, Merkinta.kuvaus, Tyomies.nimi FROM Merkinta FULL JOIN Tyomies ON Tyomies.id = Merkinta.tyomies WHERE Merkinta.kohde = :id ORDER BY Merkinta.id DESC');
-    		$query->execute(array('id' => $id));
-    		$rows = $query->fetchAll();
-    		$merkinnat = array();
+        public static function all($id){
+            $query = DB::connection()->prepare('SELECT Merkinta.id, Merkinta.paivays, Merkinta.tunnit, Merkinta.kuvaus, Tyomies.nimi FROM Merkinta FULL JOIN Tyomies ON Tyomies.id = Merkinta.tyomies WHERE Merkinta.kohde = :id ORDER BY Merkinta.id DESC');
+            $query->execute(array('id' => $id));
+            $rows = $query->fetchAll();
+            $merkinnat = array();
 
-    		foreach ($rows as $row) {
-    			$merkinnat[] = new Merkinta(array(
+            foreach ($rows as $row) {
+                $merkinnat[] = new Merkinta(array(
                     'id' => $row['id'],
-    				'paivays' => $row['paivays'],
-    				'tunnit' => $row['tunnit'],
-    				'kuvaus' => $row['kuvaus'],
-    				'nimi' => $row['nimi']
-    			));
-    		}
-    		return $merkinnat;
-		}
+                    'paivays' => $row['paivays'],
+                    'tunnit' => $row['tunnit'],
+                    'kuvaus' => $row['kuvaus'],
+                    'nimi' => $row['nimi']
+                ));
+            }
+            return $merkinnat;
+        }
 
         public static function find($id){
             $query = DB::connection()->prepare('SELECT * FROM Merkinta WHERE id = :id LIMIT 1');
@@ -76,4 +76,4 @@
             $query->execute(array('id' => $this->id));
             $row = $query->fetch();
         }
-	}
+    }

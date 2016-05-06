@@ -1,40 +1,40 @@
 <?php
 
-	class Kohde extends BaseModel{
-		public $id, $osoite, $aloitettu, $tila, $kuvaus, $katselu, $nimi, $viimeisin, $asiakas;
+    class Kohde extends BaseModel{
+        public $id, $osoite, $aloitettu, $tila, $kuvaus, $katselu, $nimi, $viimeisin, $asiakas;
 
-		public function __construct($attributes){
-    		parent::__construct($attributes);
+        public function __construct($attributes){
+            parent::__construct($attributes);
             $this->validators = array('validate_kohde');
-  		}
+        }
 
-		public static function all(){
-			$query = DB::connection()->prepare('SELECT Kohde.osoite, Kohde.aloitettu, Asiakas.nimi, Kohde.tila, MAX(Merkinta.paivays) AS viimeisin, Kohde.id FROM Kohde LEFT JOIN Asiakas ON Kohde.asiakas_id = Asiakas.id LEFT JOIN Merkinta ON Merkinta.kohde = Kohde.id GROUP BY Kohde.id, Kohde.osoite, Kohde.aloitettu, Kohde.tila,  Asiakas.nimi');
-    		$query->execute();
-    		$rows = $query->fetchAll();
-    		$kohteet = array();
+        public static function all(){
+            $query = DB::connection()->prepare('SELECT Kohde.osoite, Kohde.aloitettu, Asiakas.nimi, Kohde.tila, MAX(Merkinta.paivays) AS viimeisin, Kohde.id FROM Kohde LEFT JOIN Asiakas ON Kohde.asiakas_id = Asiakas.id LEFT JOIN Merkinta ON Merkinta.kohde = Kohde.id GROUP BY Kohde.id, Kohde.osoite, Kohde.aloitettu, Kohde.tila,  Asiakas.nimi ORDER BY Kohde.tila');
+            $query->execute();
+            $rows = $query->fetchAll();
+            $kohteet = array();
 
-    		foreach ($rows as $row) {
-    			$kohteet[] = new Kohde(array(
+            foreach ($rows as $row) {
+                $kohteet[] = new Kohde(array(
                     'id' => $row['id'],
                     'osoite' => $row['osoite'],
                     'aloitettu' => $row['aloitettu'],
-    				'tila' => $row['tila'],
-    				'nimi' => $row['nimi'],
-    				'viimeisin' => $row['viimeisin'],
-    			));
-    		}
-    		return $kohteet;
-		}
+                    'tila' => $row['tila'],
+                    'nimi' => $row['nimi'],
+                    'viimeisin' => $row['viimeisin'],
+                ));
+            }
+            return $kohteet;
+        }
 
-		public static function find($id){
-			$query = DB::connection()->prepare('SELECT Kohde.id, Kohde.osoite, Kohde.aloitettu, Kohde.tila, Kohde.kuvaus, Kohde.katselu, Asiakas.nimi, Kohde.asiakas_id FROM Kohde, Asiakas WHERE Asiakas.id = Kohde.asiakas_id AND Kohde.id = :id LIMIT 1');
-    		$query->execute(array('id' => $id));
-    		$row = $query->fetch();
+        public static function find($id){
+            $query = DB::connection()->prepare('SELECT Kohde.id, Kohde.osoite, Kohde.aloitettu, Kohde.tila, Kohde.kuvaus, Kohde.katselu, Asiakas.nimi, Kohde.asiakas_id FROM Kohde, Asiakas WHERE Asiakas.id = Kohde.asiakas_id AND Kohde.id = :id LIMIT 1');
+            $query->execute(array('id' => $id));
+            $row = $query->fetch();
 
-    		if ($row) {
-    			$kohde = new Kohde(array(
-    				'id' => $row['id'],
+            if ($row) {
+                $kohde = new Kohde(array(
+                    'id' => $row['id'],
                     'osoite' => $row['osoite'],
                     'aloitettu' => $row['aloitettu'],
                     'tila' => $row['tila'],
@@ -42,11 +42,11 @@
                     'katselu' => $row['katselu'],
                     'nimi' => $row['nimi'],
                     'asiakas' => $row['asiakas_id']
-    			));
-    			return $kohde;
-    		}
-    		return null;
-		}
+                ));
+                return $kohde;
+            }
+            return null;
+        }
 
         public function save(){
             $query = DB::connection()->prepare('INSERT INTO Kohde (osoite, aloitettu, kuvaus, katselu, asiakas_id, tila) VALUES (:osoite, :aloitettu, :kuvaus, :katselu, :nimi, :tila) RETURNING id');
@@ -101,4 +101,4 @@
             $query->execute(array('id' => $this->id));
             $row = $query->fetch();
         }
-	}
+    }

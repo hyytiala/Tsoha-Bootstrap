@@ -1,44 +1,44 @@
 {% extends "base.html" %}
 {% block content %}
-	<h1>Muokkaa asiakasta: {{attributes.nimi}}</h1>
+  <h1>Muokkaa asiakasta: {{attributes.nimi}}</h1>
 
-	{% if errors %}
-    	<div class="alert alert-danger">
-     	 	<ul>
-        	{% for error in errors %}
-          		<li>{{error}}</li>
-        	{% endfor %}
-      		</ul>
-    	</div>
-  	{% endif %}
+  {% if errors %}
+      <div class="alert alert-danger">
+        <ul>
+          {% for error in errors %}
+              <li>{{error}}</li>
+          {% endfor %}
+          </ul>
+      </div>
+    {% endif %}
 
-	<form method="post" action="{{base_path}}/asiakas/{{attributes.id}}/edit">
-	    <div class="form-group">
-	      <label>Nimi</label>
-	      <input type="text" name="nimi" class="form-control" value="{{attributes.nimi}}">
-	    </div>
-	    <div class="form-group">
-	      <label>Osoite</label>
-	      <input type="text" name="osoite" class="form-control" value="{{attributes.osoite}}">
-	    </div>
-	    <div class="form-group">
-	      <label>Postinumero</label>
-	      <input type="text" name="postinumero" class="form-control" value="{{attributes.postinumero}}">
-	    </div>
-	    <div class="form-group">
-	      <label>Postipaikka</label>
-	      <input type="text" name="postipaikka" class="form-control" value="{{attributes.postipaikka}}">
-	    </div>
-	    <div class="form-group">
-	      <label>Puhelinnumero</label>
-	      <input type="text" name="puhelin" class="form-control" value="{{attributes.puhelin}}">
-	    </div>
-	    <div class="form-group">
-	      <label>Sähköposti</label>
-	      <input type="text" name="email" class="form-control" value="{{attributes.email}}">
-	    </div>
-	    <div class="form-group">
-	      <button type="submit" class="btn btn-primary">Tallenna</button>
-	    </div>
-  	</form>
+  <form method="post" action="{{base_path}}/asiakas/{{attributes.id}}/edit">
+      <div class="form-group">
+        <label>Nimi</label>
+        <input type="text" name="nimi" class="form-control" value="{{attributes.nimi}}">
+      </div>
+      <div class="form-group">
+        <label>Osoite</label>
+        <input type="text" name="osoite" class="form-control" value="{{attributes.osoite}}">
+      </div>
+      <div class="form-group">
+        <label>Postinumero</label>
+        <input type="text" name="postinumero" class="form-control" value="{{attributes.postinumero}}">
+      </div>
+      <div class="form-group">
+        <label>Postipaikka</label>
+        <input type="text" name="postipaikka" class="form-control" value="{{attributes.postipaikka}}">
+      </div>
+      <div class="form-group">
+        <label>Puhelinnumero</label>
+        <input type="tel" name="puhelin" class="form-control" value="{{attributes.puhelin}}">
+      </div>
+      <div class="form-group">
+        <label>Sähköposti</label>
+        <input type="email" name="email" class="form-control" value="{{attributes.email}}">
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary">Tallenna</button>
+      </div>
+    </form>
 {% endblock %}

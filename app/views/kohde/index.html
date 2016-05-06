@@ -18,41 +18,46 @@
     <a href="{{base_path}}/kohde/uusi" class="btn btn-success">Lisää kohde</a>
   </p>
 
-  <table class="table table-striped table-bordered">
-    <thead>
-      <tr>
-        <th>Osoite</th>
-        <th>Aloitettu</th>
-        <th>Asiakas</th>
-        <th>Tila</th>
-        <th>Viimeisin merkintä</th>
-        <th>kohteen numero</th>
-        <th></th>
-      </tr>
-    </thead>
-
-    <tbody>
-      {% for kohde in kohteet %}
-        <tr>
-          <td><a href="{{base_path}}/kohde/{{kohde.id}}">{{kohde.osoite}}</a></td>
-          <td>{{kohde.aloitettu}}</td>
-          <td>{{kohde.nimi}}</td>
-          <td>
-            {% if kohde.tila == "kesken" %}
-              <label class="label label-danger">kesken</label>
-            {% endif%}
-            {% if kohde.tila == "valmis" %}
-              <label class="label label-success">Valmis</label>
-            {% endif%}
-            {% if kohde.tila == "lopetettu" %}
-              <label class="label label-warning">Lopetettu</label>
-            {% endif%}
-          </td>
-          <td>{{kohde.viimeisin}}</td>
-          <td>{{kohde.id}}</td>
-          <th><a class="btn btn-default btn-sm" href="{{base_path}}/kohde/{{kohde.id}}">Näytä</a></th>
-        </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+  <div class="row">
+    <div class="table-responsive">
+      <div class="col-xs-10">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Osoite</th>
+              <th>Aloitettu</th>
+              <th>Asiakas</th>
+              <th>Tila</th>
+              <th>Viimeisin merkintä</th>
+              <th>Tunnus</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for kohde in kohteet %}
+              <tr>
+                <td>{{kohde.osoite}}</td>
+                <td>{{kohde.aloitettu}}</td>
+                <td>{{kohde.nimi}}</td>
+                <td>
+                  {% if kohde.tila == "kesken" %}
+                    <label class="label label-danger">kesken</label>
+                  {% endif%}
+                  {% if kohde.tila == "valmis" %}
+                    <label class="label label-success">Valmis</label>
+                  {% endif%}
+                  {% if kohde.tila == "lopetettu" %}
+                    <label class="label label-warning">Lopetettu</label>
+                  {% endif%}
+                </td>
+                <td>{{kohde.viimeisin}}</td>
+                <td>{{kohde.id}}</td>
+                <th><a class="btn btn-default btn-sm" href="{{base_path}}/kohde/{{kohde.id}}">Näytä</a></th>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 {% endblock %}

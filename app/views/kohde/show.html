@@ -37,26 +37,28 @@
     <a href="{{base_path}}/merkinta/{{kohde.id}}" class="btn btn-success">Lisää merkintä</a>
   </p>
   <div class="row">
-    <div class="col-xs-5">
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th>Työntekijä</th>
-            <th>Päiväys</th>
-            <th>Kuvaus</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          {% for merkinta in merkinnat %}
+    <div class="table-responsive">
+      <div class="col-xs-8">
+        <table class="table table-striped">
+          <thead>
             <tr>
-              <td>{{merkinta.nimi}}</td>
-              <td>{{merkinta.paivays}}</td>
-              <td>{{merkinta.kuvaus}}</td>
+              <th>Työntekijä</th>
+              <th>Päiväys</th>
+              <th>Kuvaus</th>
             </tr>
-          {% endfor %}
-        </tbody>
-      </table>
+          </thead>
+
+          <tbody>
+            {% for merkinta in merkinnat %}
+              <tr>
+                <td>{{merkinta.nimi}}</td>
+                <td>{{merkinta.paivays}}</td>
+                <td>{{merkinta.kuvaus}}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
   {% endblock %}

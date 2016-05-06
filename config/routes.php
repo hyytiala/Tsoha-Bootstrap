@@ -44,7 +44,6 @@
   });
 
   //Kohde
-
   $routes->get('/kohde', function() {
     KohteetController::index();
   });
@@ -106,7 +105,7 @@
     TyomiesController::destroy($id);
   });
 
-  //merkinta
+  //Merkinta
   $routes->get('/merkinta/:id', function($id) {
     MerkintaController::create($id);
   });
@@ -123,24 +122,31 @@
   $routes->get('/tarkastele', function(){
     UserController::katselu();
   });
+
   $routes->post('/tarkastele', function(){
     UserController::handle_katselu();
   });
+
   $routes->get('/login', function(){
     UserController::login();
   });
+
   $routes->post('/login', function(){
     UserController::handle_login();
   });
+
   $routes->post('/logout', function(){
     UserController::logout();
   });
+
   $routes->get('/tyomies/:id/salasana', function($id){
     UserController::edit_password($id);
   });
+
   $routes->post('/tyomies/:id/salasana', function($id){
     UserController::update_password($id);
   });
+  
   $routes->post('/tyomies/:id/reset', function($id){
     UserController::reset_password($id);
   });

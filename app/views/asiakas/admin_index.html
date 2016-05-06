@@ -33,6 +33,7 @@
               <th>Puhelinnumero</th>
               <th>Sähköposti</th>
               <th></th>
+              <th></th>
             </tr>
           </thead>
 
@@ -47,6 +48,7 @@
                 <td>{{asiakas.puhelin}}</td>
                 <td>{{asiakas.email}}</td>
                 <th><a class="btn btn-default btn-sm" href="{{base_path}}/asiakas/{{asiakas.id}}">Näytä</a></th>
+                <th>{{forms.destroy_button("#{base_path}/asiakas/#{asiakas.id}/destroy")}}</th>
               </tr>
             {% endfor %}
           </tbody>

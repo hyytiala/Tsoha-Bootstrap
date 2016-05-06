@@ -1,50 +1,50 @@
 <?php
 
-	
-	class Tyomies extends BaseModel{
-		public $id, $nimi, $kayttaja, $salasana, $puhelin, $tunnit, $admin;
-		
-		public function __construct($attributes){
-			parent::__construct($attributes);
+    
+    class Tyomies extends BaseModel{
+        public $id, $nimi, $kayttaja, $salasana, $puhelin, $tunnit, $admin;
+        
+        public function __construct($attributes){
+            parent::__construct($attributes);
             $this->validators = array('validate_tyomies');
-		}
+        }
 
-		public static function all(){
-			$query = DB::connection()->prepare('SELECT id, nimi, puhelin, tunnit, admin FROM Tyomies ORDER BY id');
-    		$query->execute();
-    		$rows = $query->fetchAll();
-    		$tyomiehet = array();
+        public static function all(){
+            $query = DB::connection()->prepare('SELECT id, nimi, puhelin, tunnit, admin FROM Tyomies ORDER BY id');
+            $query->execute();
+            $rows = $query->fetchAll();
+            $tyomiehet = array();
 
-    		foreach ($rows as $row) {
-    			$tyomiehet[] = new Tyomies(array(
-    				'id' => $row['id'],
-    				'nimi' => $row['nimi'],
-    				'puhelin' => $row['puhelin'],
-    				'tunnit' => $row['tunnit'],
+            foreach ($rows as $row) {
+                $tyomiehet[] = new Tyomies(array(
+                    'id' => $row['id'],
+                    'nimi' => $row['nimi'],
+                    'puhelin' => $row['puhelin'],
+                    'tunnit' => $row['tunnit'],
                     'admin' => $row['admin']
-    			));
-    		}
-    		return $tyomiehet;
-		}
+                ));
+            }
+            return $tyomiehet;
+        }
 
-		public static function find($id){
-			$query = DB::connection()->prepare('SELECT id, nimi, puhelin, tunnit, kayttaja, admin FROM Tyomies WHERE id = :id LIMIT 1');
-    		$query->execute(array('id' => $id));
-    		$row = $query->fetch();
+        public static function find($id){
+            $query = DB::connection()->prepare('SELECT id, nimi, puhelin, tunnit, kayttaja, admin FROM Tyomies WHERE id = :id LIMIT 1');
+            $query->execute(array('id' => $id));
+            $row = $query->fetch();
 
-    		if ($row) {
-    			$tyomies = new Tyomies(array(
-    				'id' => $row['id'],
-    				'nimi' => $row['nimi'],
-    				'puhelin' => $row['puhelin'],
-    				'tunnit' => $row['tunnit'],
+            if ($row) {
+                $tyomies = new Tyomies(array(
+                    'id' => $row['id'],
+                    'nimi' => $row['nimi'],
+                    'puhelin' => $row['puhelin'],
+                    'tunnit' => $row['tunnit'],
                     'kayttaja' => $row['kayttaja'],
                     'admin' => $row['admin']
-    			));
-    			return $tyomies;
-    		}
-    		return null;
-		}
+                ));
+                return $tyomies;
+            }
+            return null;
+        }
 
         public function save(){
             $query = DB::connection()->prepare('INSERT INTO Tyomies (nimi, kayttaja, puhelin, salasana, admin) VALUES (:nimi, :kayttaja, :puhelin, :salasana, :admin) RETURNING id');

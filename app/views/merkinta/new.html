@@ -18,11 +18,11 @@
     </div>
     <div class="form-group">
       <label>Kuvaus</label>
-      <input type="text" name="kuvaus" class="form-control" value="{{attributes.kuvaus}}">
+      <input type="text" name="kuvaus" class="form-control" required>
     </div>
     <div class="form-group">
       <label>Työtunnit</label>
-      <input type="text" name="tunnit" class="form-control" value="{{attributes.tunnit}}">
+      <input type="number" step="0.5" min="0" name="tunnit" class="form-control" required>
     </div>
     <div class="form-group">
       <button type="submit" class="btn btn-primary">Tallenna</button>
