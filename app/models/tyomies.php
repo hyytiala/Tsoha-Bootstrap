@@ -68,6 +68,18 @@
             if($this->kayttaja == '' || $this->kayttaja == null || strlen($this->kayttaja) < 3){
                 $errors[] = 'Käyttäjänimen tulee olla vähintään 3 merkkiä';
             }
+            if(strlen($this->nimi) > 50){
+                $errors[] = 'Nimen maksimipituus on 50 merkkiä';
+            }
+            if(strlen($this->puhelin) > 50){
+                $errors[] = 'Numeron maksimipituus on 50 merkkiä';
+            }
+            if(strlen($this->kayttaja) > 50){
+                $errors[] = 'Käyttäjänimen maksimipituus on 50 merkkiä';
+            }
+            if(strlen($this->salasana) > 50){
+                $errors[] = 'Salasanan maksimipituus on 50 merkkiä';
+            }
             return $errors;
         }
 

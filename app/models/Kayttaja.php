@@ -6,6 +6,7 @@
         
         function __construct($attributes){
             parent::__construct($attributes);
+            $this->validators = array('validate_salasana');
         }
 
         public static function authenticate($kayttaja, $salasana){
@@ -48,6 +49,9 @@
             $errors = array();
             if($this->salasana == '' || $this->salasana == null || strlen($this->salasana) < 5){
                 $errors[] = 'Salasanan tulee olla vähintään 5 merkkiä';
+            }
+            if(strlen($this->salasana) > 50){
+                $errors[] = 'Salasanan maksimipituus on 50 merkkiä';
             }
             return $errors;
         }

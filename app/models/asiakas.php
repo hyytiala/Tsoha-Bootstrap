@@ -92,6 +92,25 @@
             if($this->postinumero == '' || $this->postinumero == null){
                 $errors[] = 'postinumero ei saa olla tyhjä';
             }
+            if(strlen($this->nimi) > 50){
+                $errors[] = 'Nimen maksimipituus on 50 merkkiä';
+            }
+            if(strlen($this->osoite) > 100){
+                $errors[] = 'Osoitteen maksimipituus on 100 merkkiä';
+            }
+            if(strlen($this->postinumero) > 10){
+                $errors[] = 'Postinumeron maksimipituus on 10 merkkiä';
+            }
+            if(strlen($this->postipaikka) > 50){
+                $errors[] = 'Postipaikan maksimipituus on 50 merkkiä';
+            }
+            if(strlen($this->puhelin) > 50){
+                $errors[] = 'Puhelinnumeron maksimipituus on 50 merkkiä';
+            }
+            if(strlen($this->email) > 50){
+                $errors[] = 'Sähköpostin maksimipituus on 50 merkkiä';
+            }
+            
             return $errors;
         }
     }

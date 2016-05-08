@@ -86,7 +86,7 @@
 
             if(count($errors) == 0){
                 $kohde->save();
-                Redirect::to('/kohde/' . $kohde->id, array('message' => 'Kohde on lisätty kirjastoosi!'));
+                Redirect::to('/kohde/' . $kohde->id, array('message' => 'Kohde lisätty!'));
 
             }else{
                 $asiakkaat = Asiakas::all();

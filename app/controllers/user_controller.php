@@ -47,13 +47,15 @@
             );
 
             $kayttaja = new Kayttaja($attributes);
-            $errors = array();
-            $errors[] = 'Salasanat eivät täsmää';
+            $errors = $kayttaja->errors();
 
-            if(Kayttaja::authenticate_password($params['nyk'], $id) && $params['salasana'] == $params['re']){
+            if(Kayttaja::authenticate_password($params['nyk'], $id) && $params['salasana'] == $params['re'] && count($errors) == 0){
                 $kayttaja->update_password();
                 Redirect::to('/tyomies', array('message' => 'Salasana on päivitetty'));
             }else{
+                if (count($errors) == 0){
+                    $errors[] = 'Salasanat eivät täsmää';
+                }
                 View::make('kayttaja/salasana.html', array('errors' => $errors, 'attributes' => $attributes));
             }
         }

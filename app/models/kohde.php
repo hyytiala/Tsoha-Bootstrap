@@ -87,6 +87,12 @@
             if($this->katselu == null){
                 $errors[] = 'Valitse kohteen katseluoikeus';
             }
+            if(strlen($this->osoite) > 100){
+                $errors[] = 'Osoitteen maksimipituus on 100 merkkiä';
+            }
+            if(strlen($this->kuvaus) > 200){
+                $errors[] = 'Kuvauksen maksimipituus on 200 merkkiä';
+            }
             return $errors;
         }
 

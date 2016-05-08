@@ -62,6 +62,9 @@
             if(!is_numeric($this->tunnit)){
                 $errors[] = 'Tunnit täytyy olla numero. Käytä pistettä(.) pilkun(,) sijaan';
             }
+            if($this->tunnit > 24){
+                $errors[] = 'Maksimituntimäärä on 24';
+            }
             return $errors;
         }
 
